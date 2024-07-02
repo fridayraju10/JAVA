@@ -1,0 +1,88 @@
+import java.util.Scanner;
+
+class Linkedlist {
+    Node head;
+
+    class Node {
+        int data;
+        Node next;
+
+        Node(int val) {
+            data = val;
+            next = null;
+        }
+    }
+
+    Linkedlist() {
+        head = null;
+    }
+
+    public void insertAtBeg(int val) {
+        Node newnode = new Node(val);
+        if (head == null)
+            head = newnode;
+        else {
+            newnode.next = head;
+            head = newnode;
+        }
+    }
+
+    public void display() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+    public void insertAtpos(int pos,int val)
+    {
+        if(pos==0)
+        {
+             insertAtBeg(val);
+             return;
+        }
+       
+        else
+        {
+            Node newnode=new Node(val);
+            Node temp=head;
+            for(int i=1;i<pos;i++)
+            {
+                temp=temp.next;
+                if(temp==null)
+                {
+                    System.out.println("Invalid position");
+                    return;
+                }
+            }
+            newnode.next=temp.next;
+            temp.next=newnode;
+        }
+    }
+    public void deleteAtpos(int pos)
+    {
+        Node temp=head;
+        Node prev=null;
+        for(int i=1;i<=pos;i++)
+        {
+            prev=temp;
+            temp=temp.next;
+        }
+        prev.next=temp.next;
+    }
+    
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Linkedlist l = new Linkedlist();
+        l.insertAtBeg(9);
+        l.insertAtBeg(10);
+        l.insertAtBeg(23);
+        l.insertAtpos(1,200);
+    
+         l.deleteAtpos(2);
+              l.display();
+  
+    }
+}
