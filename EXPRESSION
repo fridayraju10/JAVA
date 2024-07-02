@@ -1,0 +1,72 @@
+import java.util.Stack;
+
+public class ExpressionEvaluator {
+    public static int evaluateExpression(String expr) {
+        Stack<Character> operators = new Stack<>();
+        Stack<Integer> operands = new Stack<>();
+
+        int i = 0;
+        while (i < expr.length()) {
+            if (Character.isDigit(expr.charAt(i))) {
+                int num = 0;
+                while (i < expr.length() && Character.isDigit(expr.charAt(i))) {
+                    num = num * 10 + (expr.charAt(i) - '0');
+                    i++;
+                }
+                operands.push(num);
+            } else if (expr.charAt(i) == '+' || expr.charAt(i) == '-' || expr.charAt(i) == '*' || expr.charAt(i) == '/') {
+                while (!operators.isEmpty() && precedence(operators.peek()) >= precedence(expr.charAt(i))) {
+                    char op = operators.pop();
+                    int num2 = operands.pop();
+                    int num1 = operands.pop();
+                    operands.push(applyOperation(num1, num2, op));
+                }
+                operators.push(expr.charAt(i));
+                i++;
+            } else {
+                i++;
+            }
+        }
+
+        while (!operators.isEmpty()) {
+            char op = operators.pop();
+            int num2 = operands.pop();
+            int num1 = operands.pop();
+            operands.push(applyOperation(num1, num2, op));
+        }
+
+        return operands.pop();
+    }
+
+    private static int precedence(char op) {
+        switch (op) {
+            case '+':
+            case '-':
+                return 1;
+            case '*':
+            case '/':
+                return 2;
+        }
+        return -1;
+    }
+
+    private static int applyOperation(int a, int b, char op) {
+        switch (op) {
+            case '+':
+                return a + b;
+            case '-':
+                return a - b;
+            case '*':
+                return a * b;
+            case '/':
+                return a / b;
+        }
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        String expr = "7+8-9-1";
+        int result = evaluateExpression(expr);
+        System.out.println(result);  // Output: 5
+    }
+}
