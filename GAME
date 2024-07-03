@@ -1,0 +1,84 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        System.out.print("Enter the name of player 1: ");
+        String name1 = scanner.nextLine();
+        System.out.print("Enter the name of player 2: ");
+        String name2 = scanner.nextLine();
+        System.out.println("Hello " + name1 + " and " + name2);
+
+        Thread.sleep(1000);
+        System.out.println("Computer has some five integers in mind");
+        Thread.sleep(1000);
+        System.out.println("You both can have five choices each to guess .. Ready??");
+
+        List<Integer> num = new ArrayList<>();
+        while (num.size() != 5) {
+            int a = random.nextInt(10) + 1;
+            if (!num.contains(a)) {
+                num.add(a);
+            }
+        }
+
+        int s1 = 0, s2 = 0;
+        List<Integer> player1 = new ArrayList<>();
+        List<Integer> player2 = new ArrayList<>();
+        
+        for (int i = 0; i < 3; i++) {
+            System.out.print("Player 1, guess your choice---> ");
+            int p1 = scanner.nextInt();
+            while (player1.contains(p1) || player2.contains(p1)) {
+                System.out.print("It is already chosen. Guess another num: ");
+                p1 = scanner.nextInt();
+            }
+            player1.add(p1);
+            if (num.contains(p1)) {
+                s1++;
+                System.out.println("CORRECT");
+            } else {
+                System.out.println("WRONG");
+            }
+
+            System.out.print("Player 2, guess your choice---> ");
+            int p2 = scanner.nextInt();
+            while (player1.contains(p2) || player2.contains(p2)) {
+                System.out.print("It is already chosen. Guess another num: ");
+                p2 = scanner.nextInt();
+            }
+            player2.add(p2);
+            if (num.contains(p2)) {
+                s2++;
+                System.out.println("CORRECT");
+            } else {
+                System.out.println("WRONG");
+            }
+        }
+
+        System.out.println(s1);
+        System.out.println(s2);
+        System.out.println("Let's see summary and result");
+        Thread.sleep(1000);
+        System.out.println("Numbers in mind: " + num);
+        System.out.println(name1 + " has chosen: " + player1);
+        System.out.println("His score is: " + s1);
+        System.out.println(name2 + " has chosen: " + player2);
+        System.out.println("His score is: " + s2);
+
+        if (s1 > s2) {
+            System.out.println("Mr/Ms " + name1 + " is the winner!");
+        } else if (s2 > s1) {
+            System.out.println("Mr/Ms " + name2 + " is the winner!");
+        } else {
+            System.out.println("Score level --- Draw");
+        }
+
+        scanner.close();
+    }
+}
