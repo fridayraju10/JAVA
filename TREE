@@ -1,1 +1,140 @@
+class Node
+{
+    public int data;
+    public Node left;
+    public Node right;
+    public Node(int data)
+    {
+        this.data=data;
+        this.left=null;
+        this.right=null;
+    }
+}
 
+class Tree
+{
+    public Node root=null;
+    
+    void insert(int data)
+    {
+        Node z = new Node(data);
+        Node temp;
+        if(root==null)
+        {
+            root=z;
+        }
+        else
+        {
+            temp=root;
+            while(true)
+            {
+                
+                if(temp.data > data)
+                {
+                    if(temp.left==null)
+                    {
+                        temp.left=z;
+                        break;
+                    }
+                    else
+                    {
+                        temp=temp.left;
+                    }
+                }
+                else
+                {
+                    if(temp.right==null)
+                    {
+                        temp.right=z;
+                        break;
+                    }
+                    else
+                    {
+                        temp=temp.right;
+                    }
+                }
+            }
+        }
+    }
+    
+    void inOrder(Node root)
+    {
+        if(root!=null)
+        {
+            inOrder(root.left);
+            System.out.print(root.data +" ");
+            inOrder(root.right);
+        }
+    }
+    void preOrder(Node root)
+    {
+        if(root!=null)
+        {
+            System.out.print(root.data +" ");
+            inOrder(root.left);
+            inOrder(root.right);
+        }
+    }
+    void postOrder(Node root)
+    {
+        if(root!=null)
+        {
+            
+            inOrder(root.left);
+            inOrder(root.right);
+            System.out.print(root.data+ " ");
+        }
+    }
+    
+    public Node search(int data)
+    {
+        Node temp=root;
+        while(true)
+        {
+            if(temp.data > data)
+            {
+                temp=temp.left;
+            }
+            else
+            {
+                temp=temp.right;
+            }
+            if(temp == null)
+            {
+                System.out.print("Not found");
+                return null;
+            }
+            if(temp.data ==  data)
+            {
+                System.out.print("Found");
+                return null;
+            }
+            
+        }
+        
+    }
+    
+}
+
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        Tree x = new Tree();
+        x.insert(10);
+        x.insert(12);
+        x.insert(3);
+        x.insert(11);
+        x.insert(25);
+        x.insert(50);
+        x.insert(5);
+         System.out.println("The Inorder is...");
+        x.inOrder(x.root);
+        System.out.println("The preorder is...");
+        x.preOrder(x.root);
+         System.out.println("The postorder is...");
+        x.postOrder(x.root);
+        x.search(10);
+    }
+}
