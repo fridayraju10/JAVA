@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void primeFactors(int num, int i) {
+        if (num == 1) {
+            return;
+        }
+        while (num % i != 0) {
+            i += 1;
+        }
+        System.out.print(i + " ");
+        primeFactors(num / i, i);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int num = scanner.nextInt();
+        System.out.println("\nUsing Recursion:\n");
+        primeFactors(num, 2); // Initial call with starting divisor 2
+    }
+}
