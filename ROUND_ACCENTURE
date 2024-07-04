@@ -1,0 +1,37 @@
+import java.util.HashSet;
+import java.util.Set;
+
+public class Main {
+
+    public static boolean isRoundNumber(int n) {
+        Set<Integer> seenNumbers = new HashSet<>();
+        
+        while (n != 1 && !seenNumbers.contains(n)) {
+            seenNumbers.add(n);
+            n = sumOfSquaresOfDigits(n);
+        }
+        
+        return n == 1;
+    }
+
+    private static int sumOfSquaresOfDigits(int n) {
+        int sum = 0;
+        while (n > 0) {
+            int digit = n % 10;
+            sum += digit * digit;
+            n /= 10;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        // Example test cases
+        int test1 = 19; // round number
+        int test2 = 20; // not a round number
+        int test3 = 7; // round number
+
+        System.out.println(test1 + " is round number: " + isRoundNumber(test1)); // true
+        System.out.println(test2 + " is round number: " + isRoundNumber(test2)); // false
+        System.out.println(test3 + " is round number: " + isRoundNumber(test3)); // true
+    }
+}
