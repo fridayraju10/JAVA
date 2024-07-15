@@ -1,0 +1,26 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    public static void main(String[] args) {
+       
+        HashMap<String, Integer> run = new HashMap<>();
+
+        run.put("Raju", 75);
+        run.put("Virat", 67);
+        run.put("Rohit", 90);
+        run.put("Sachin", 19);
+        System.out.println("Players and their runs:");
+        for (Map.Entry<String, Integer> entry : run.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+        String name = "Virat";
+        if (run.containsKey(name)) {
+            System.out.println("\nThe runs of " + name + " are " + run.get(name));
+        } else {
+            System.out.println("\n" + name + " is not in the map.");
+        }
+
+    }
+}
