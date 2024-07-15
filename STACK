@@ -1,0 +1,25 @@
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) {
+        Stack<Integer> ageStack = new Stack<>();
+
+        ageStack.push(25);
+        ageStack.push(30);
+        ageStack.push(45);
+        ageStack.push(20);
+        ageStack.push(50);
+
+        System.out.println("Ages in the stack:");
+        for (Integer age : ageStack) {
+            System.out.println(age);
+        }
+
+        System.out.println("\nPopping ages from the stack:");
+        while (!ageStack.isEmpty()) {
+            System.out.println(ageStack.pop());
+        }
+
+        System.out.println("\nIs the stack empty? " + ageStack.isEmpty());
+    }
+}
