@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<String> names = new ArrayList<>();
+        names.add("VIJAY");
+        names.add("JAMES");
+        names.add("BEN");
+
+        System.out.println("The legends are in the list:");
+        for (String n : names) {
+            System.out.println(n);
+        }
+        names.remove("JAMES");
+        System.out.println("\n NAMES in the list after removal:");
+        for (String n : names) {
+            System.out.println(n);
+        }
+        System.out.println("\nNumber of fruits in the list: " + names.size());
+    }
+}
