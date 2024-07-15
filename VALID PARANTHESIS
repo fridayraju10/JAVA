@@ -1,0 +1,33 @@
+import java.util.Stack;
+import java.util.HashMap;
+
+public class Main {
+    
+    public static boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        HashMap<Character, Character> bracketsMap = new HashMap<>();
+        bracketsMap.put(')', '(');
+        bracketsMap.put(']', '[');
+        bracketsMap.put('}', '{');
+        
+        for (char ch : s.toCharArray()) {
+            if (bracketsMap.containsValue(ch)) {
+                stack.push(ch);
+            } else if (bracketsMap.containsKey(ch)) {
+                if (stack.isEmpty() || bracketsMap.get(ch) != stack.pop()) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        
+        return stack.isEmpty();
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(isValid("()"));          // true
+        System.out.println(isValid("()[]{}"));      // true
+        System.out.println(isValid("(]"));          // false
+    }
+}
