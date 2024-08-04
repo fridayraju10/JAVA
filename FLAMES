@@ -1,0 +1,109 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class RelationshipChecker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the Boy name without spaces: ");
+        String name1 = scanner.nextLine();
+        System.out.print("Enter the girl name without spaces: ");
+        String name2 = scanner.nextLine();
+
+        List<Character> l1 = new ArrayList<>();
+        List<Character> l2 = new ArrayList<>();
+
+        for (char c : name1.toCharArray()) {
+            l1.add(c);
+        }
+        System.out.println(l1);
+
+        for (char c : name2.toCharArray()) {
+            l2.add(c);
+        }
+        System.out.println(l2);
+
+        int a = l1.size();
+        int b = l2.size();
+
+        // Mark common characters as '2'
+        for (int x = 0; x < a; x++) {
+            for (int y = 0; y < b; y++) {
+                if (l1.get(x).equals(l2.get(y))) {
+                    l1.set(x, '2');
+                    l2.set(y, '2');
+                }
+            }
+        }
+        System.out.println(l1);
+        System.out.println(l2);
+
+        // Count '2' characters and calculate non-matching characters
+        int count2InL1 = 0;
+        int count2InL2 = 0;
+
+        // Count '2' characters in l1
+        for (char c : l1) {
+            if (c == '2') {
+                count2InL1++;
+            }
+        }
+
+        // Count '2' characters in l2
+        for (char c : l2) {
+            if (c == '2') {
+                count2InL2++;
+            }
+        }
+
+        // Calculate the number of non-matching characters
+        int reallen1 = a - count2InL1;
+        int reallen2 = b - count2InL2;
+
+        int finalCount = reallen1 + reallen2;
+
+        System.out.println(finalCount);
+
+        // Determine relationship using switch
+        String relation;
+        switch (finalCount) {
+            case 1:
+                relation = "SISTER";
+                break;
+            case 2:
+                relation = "ENEMY";
+                break;
+            case 3:
+                relation = "FRIEND";
+                break;
+            case 4:
+                relation = "ENEMY";
+                break;
+            case 5:
+                relation = "AFFECTION";
+                break;
+            case 6:
+                relation = "MARRIAGE";
+                break;
+            case 7:
+                relation = "MARRIAGE";
+                break;
+            case 8:
+                relation = "AFFECTION";
+                break;
+            case 9:
+                relation = "ENEMY";
+                break;
+            case 10:
+                relation = "LOVE";
+                break;
+            default:
+                relation = "UNKNOWN";
+        }
+
+        System.out.println("The Relation is " + relation);
+
+        scanner.close();
+    }
+}
