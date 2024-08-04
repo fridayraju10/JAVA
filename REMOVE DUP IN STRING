@@ -1,0 +1,24 @@
+public class RemoveDuplicates {
+    public static void main(String[] args) {
+        String input = "programming";
+        String result = removeDuplicates(input);
+        System.out.println("Output: " + result);
+    }
+
+    public static String removeDuplicates(String input) {
+        boolean[] seen = new boolean[256]; // ASCII character set size
+        StringBuilder sb = new StringBuilder();
+
+        // Iterate through each character in the input string
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            // If the character has not been seen before, add it to the StringBuilder
+            if (!seen[c]) {
+                seen[c] = true;
+                sb.append(c);
+            }
+        }
+
+        return sb.toString();
+    }
+}
