@@ -1,20 +1,16 @@
-public class StringToInteger {
-    public static void main(String[] args) {
+public class Main 
+{
+    public static void main(String[] args) 
+    {
         String input = "1234";
-        int result = myAtoi(input);
-        System.out.println("Output: " + result);
-    }
-
-    public static int myAtoi(String str) {
         int result = 0;
 
-        // Iterate through each character in the string
-        for (int i = 0; i < str.length(); i++) {
-            char c = str.charAt(i);
-            // Convert character to digit and add to the result
+        for (int i = 0; i < input.length(); i++) 
+        {
+            char c = input.charAt(i);
             result = result * 10 + (c - '0');
         }
 
-        return result;
+        System.out.println("Output: " + result);
     }
 }
