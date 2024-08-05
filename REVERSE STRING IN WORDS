@@ -1,0 +1,15 @@
+public class Main {
+    public static void main(String[] args) {
+        String input = "Hello World";
+        String[] words = input.split(" ");
+        StringBuilder reversedString = new StringBuilder();
+
+        for (String word : words) 
+        {
+            StringBuilder reversedWord = new StringBuilder(word);
+            reversedString.append(reversedWord.reverse().toString()).append(" ");
+        }
+        String output = reversedString.toString();
+        System.out.println(output); 
+}
+}
