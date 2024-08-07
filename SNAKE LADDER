@@ -1,0 +1,84 @@
+import java.util.Scanner;
+import java.util.Random;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        int s1 = 0, s2 = 0;
+        while (true) {
+            System.out.print("\nEnter player no: ");
+            int p = scanner.nextInt();
+            int d = random.nextInt(6) + 1;
+            System.out.println("Dice score: " + d);
+
+            if (p == 1) {
+                s1 += d;
+                if (s1 == 7) {
+                    s1 += 25;
+                    System.out.println("You Got ladder");
+                } else if (s1 == 21) {
+                    s1 += 41;
+                    System.out.println("You Got ladder");
+                } else if (s1 == 35) {
+                    s1 += 61;
+                    System.out.println("You Got ladder");
+                } else if (s1 == 48) {
+                    s1 += 36;
+                    System.out.println("You Got ladder");
+                } else if (s1 == 60) {
+                    s1 += 29;
+                    System.out.println("You Got ladder");
+                } else if (s1 == 24) {
+                    s1 -= 20;
+                    System.out.println("You caught by snake");
+                } else if (s1 == 98) {
+                    s1 -= 70;
+                    System.out.println("You caught by snake");
+                }
+                if (s1 > 100) {
+                    s1 -= d;
+                }
+                if (s1 == 100) {
+                    System.out.println("Player 1 is winner");
+                    break;
+                }
+                System.out.println("Player 1: " + s1);
+            }
+
+            if (p == 2) {
+                s2 += d;
+                if (s2 == 7) {
+                    s2 += 25;
+                    System.out.println("You Got ladder");
+                } else if (s2 == 21) {
+                    s2 += 41;
+                    System.out.println("You Got ladder");
+                } else if (s2 == 35) {
+                    s2 += 61;
+                    System.out.println("You Got ladder");
+                } else if (s2 == 48) {
+                    s2 += 36;
+                    System.out.println("You Got ladder");
+                } else if (s2 == 60) {
+                    s2 += 29;
+                    System.out.println("You Got ladder");
+                } else if (s2 == 24) {
+                    s2 -= 20;
+                    System.out.println("You caught by snake");
+                } else if (s2 == 98) {
+                    s2 -= 70;
+                    System.out.println("You caught by snake");
+                }
+                if (s2 > 100) {
+                    s2 -= d;
+                }
+                if (s2 == 100) {
+                    System.out.println("Player 2 is winner");
+                    break;
+                }
+                System.out.println("Player 2: " + s2);
+            }
+        }
+        scanner.close();
+    }
+}
