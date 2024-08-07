@@ -1,0 +1,47 @@
+
+public class Main {
+    public static void main(String[] args) {
+        // Simulate command-line arguments
+        String[] simulatedArgs = {"5", "3", "8", "1"};
+
+        // Use simulatedArgs instead of args
+        if (simulatedArgs.length == 0) {
+            System.out.println("No arguments provided.");
+            return;
+        }
+
+        int[] numbers = new int[simulatedArgs.length];
+        boolean allValid = true;
+        
+        for (int i = 0; i < simulatedArgs.length; i++) {
+            if (isInteger(simulatedArgs[i])) {
+                numbers[i] = Integer.parseInt(simulatedArgs[i]);
+            } else {
+                System.out.println("Invalid input: " + simulatedArgs[i] + " is not an integer.");
+                allValid = false;
+            }
+        }
+        
+        if (allValid) {
+            Arrays.sort(numbers);
+
+            for (int num : numbers) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static boolean isInteger(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c) && !(c == '-' && str.indexOf(c) == 0 && str.length() > 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
