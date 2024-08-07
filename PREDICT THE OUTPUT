@@ -1,0 +1,94 @@
+1.public class Main {
+    public static void main(String[] args) {
+        int a = 15;
+        int b = 8;
+        int c = 20;
+        int result = 0;
+
+        if (a > b && a < c) {
+            result += a;
+        }
+        if (b < a || b > c) {
+            result += b;
+        }
+        if (!(c < a)) {
+            result += c;
+        }
+        if ((a % 2 == 0) && (b % 2 == 0)) {
+            result -= a;
+        } else {
+            result += b;
+        }
+
+        System.out.println("Final result: " + result);
+    }
+}
+----------------------------------------------------------------
+2. public class Main {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= i; j++) {
+                if (j % 2 == 0) {
+                    System.out.print('X');
+                } else {
+                    System.out.print('O');
+                }
+            }
+            System.out.println();
+        }
+    }
+}
+-------------------------------------------------------------
+3. public class Main {
+    public static void main(String[] args) {
+        String word = "HKNUDT";
+
+        for (int i = 0; i < word.length(); i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print((char) (word.charAt(j) + 1));
+            }
+            System.out.println();
+        }
+    }
+}
+--------------------------------------------------------
+4. public class Main {
+    public static void main(String[] args) {
+        int[][] array = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                    sum += array[i][j];
+                    if (sum % 5 == 0) {
+                        System.out.println(" Sum: " + sum);
+                        return;
+                }
+            }
+        }
+    }
+}
+----------------------------------------------------------------------
+5. public class Main {
+    public static void main(String[] args) {
+        String[][] array = {
+            {"hello", "world"},
+            {"java", "programming"},
+            {"predict", "output"}
+        };
+        String result = "";
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (i == j) {
+                    result += array[i][j];
+                }
+            }
+        }
+        System.out.println("Result: " + result);
+    }
+}
+---------------------
