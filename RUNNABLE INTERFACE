@@ -1,0 +1,48 @@
+class Master {
+    public void dis() {
+        System.out.println("Hello boys & Girls .. Can u understand this ruunable");
+    }
+}
+
+class Even extends Master implements Runnable {
+    @Override
+    public void run() {
+        for (int i = 0; i <= 10; i += 2) {
+            System.out.println("Even: " + i);
+            try {
+                Thread.sleep(500); // Sleep for 0.5 seconds
+            } catch (InterruptedException e) {
+                System.out.println("Even thread interrupted: " + e.getMessage());
+            }
+        }
+    }
+}
+
+class Odd extends Master implements Runnable {
+    @Override
+    public void run() {
+        for (int i = 1; i <= 10; i += 2) {
+            System.out.println("Odd: " + i);
+            try {
+                Thread.sleep(500); // Sleep for 0.5 seconds
+            } catch (InterruptedException e) {
+                System.out.println("Odd thread interrupted: " + e.getMessage());
+            }
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Even a1 = new Even();
+        Odd a2 = new Odd();
+
+        Thread evenThread = new Thread(a1);
+        Thread oddThread = new Thread(a2);
+        evenThread.start();
+        oddThread.start();
+        a1.dis();
+        a2.dis();
+    }
+}
