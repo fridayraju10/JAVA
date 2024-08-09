@@ -1,0 +1,54 @@
+package TRY;
+
+
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class SimpleAWTExample extends Frame implements ActionListener {
+
+    private Button button;
+
+    public SimpleAWTExample() {
+        // Set the title of the window
+        setTitle("Simple AWT Example");
+
+        // Set the size of the window
+        setSize(300, 200);
+
+        // Create a new button with a label
+        button = new Button("Click Me!");
+
+        // Add the button to the frame
+        add(button);
+
+        // Register the button with an action listener
+        button.addActionListener(this);
+
+        // Set the layout manager (optional)
+        setLayout(new FlowLayout());
+
+        // Make the window visible
+        setVisible(true);
+
+        // Add a window listener to handle window closing event
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                dispose(); // Close the window
+                System.exit(0); // Exit the program
+            }
+        });
+    }
+
+    // Handle button click event
+    public void actionPerformed(ActionEvent ae) {
+        // Display a message dialog when the button is clicked
+        System.out.println("Button Clicked!");
+    }
+
+    public static void main(String[] args) {
+        // Create an instance of the SimpleAWTExample class
+        new SimpleAWTExample();
+    }
+}
+
