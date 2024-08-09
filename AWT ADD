@@ -1,0 +1,73 @@
+package TRY2;
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class AddTwoIntegersAWT extends Frame implements ActionListener {
+
+    // Components
+    private TextField textField1;
+    private TextField textField2;
+    private Button addButton;
+    private Label resultLabel;
+
+    // Constructor
+    public AddTwoIntegersAWT() {
+        // Set layout for the frame
+        setLayout(new FlowLayout());
+
+        // Initialize components
+        textField1 = new TextField(10); // Text field with 10 columns
+        textField2 = new TextField(10);
+        addButton = new Button("Add");
+        resultLabel = new Label("Result: ");
+
+        // Add components to the frame
+        add(new Label("Enter first number:"));
+        add(textField1);
+        add(new Label("Enter second number:"));
+        add(textField2);
+        add(addButton);
+        add(resultLabel);
+
+        // Add action listener to the button
+        addButton.addActionListener(this);
+
+        // Set frame properties
+        setTitle("Add Two Integers");
+        setSize(350, 150);
+        setVisible(true);
+
+        // Add window listener to close the application
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                dispose();
+                System.exit(0);
+            }
+        });
+    }
+
+    // Action performed when the button is clicked
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            // Get the integers from the text fields
+            int num1 = Integer.parseInt(textField1.getText());
+            int num2 = Integer.parseInt(textField2.getText());
+
+            // Add the numbers
+            int sum = num1 + num2;
+
+            // Display the result
+            resultLabel.setText("Result: " + sum);
+        } catch (NumberFormatException ex) {
+            resultLabel.setText("Please enter valid integers.");
+        }
+    }
+
+    // Main method
+    public static void main(String[] args) {
+        new AddTwoIntegersAWT();
+    }
+}
+
