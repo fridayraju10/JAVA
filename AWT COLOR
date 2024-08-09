@@ -1,0 +1,62 @@
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class DEMO extends Frame implements ActionListener {
+
+    Button redButton, greenButton, blueButton;
+
+    public DEMO() {
+        // Set the layout for the frame
+        setLayout(new FlowLayout());
+
+        // Create buttons
+        redButton = new Button("Red");
+        greenButton = new Button("Green");
+        blueButton = new Button("Blue");
+
+        // Add action listeners to the buttons
+        redButton.addActionListener(this);
+        greenButton.addActionListener(this);
+        blueButton.addActionListener(this);
+
+        // Add buttons to the frame
+        add(redButton);
+        add(greenButton);
+        add(blueButton);
+
+        // Set frame properties
+        setSize(300, 200);
+        setTitle("Background Color Changer");
+        setVisible(true);
+
+        // Close the window when the user clicks the close button
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                System.exit(0);
+            }
+        });
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+        // Get the label of the clicked button
+        String command = ae.getActionCommand();
+
+        // Use switch to change the background color based on the button clicked
+        switch (command) {
+            case "Red":
+                setBackground(Color.RED);
+                break;
+            case "Green":
+                setBackground(Color.GREEN);
+                break;
+            case "Blue":
+                setBackground(Color.BLUE);
+                break;
+        }
+    }
+
+    public static void main(String[] args) {
+        new DEMO();
+    }
+}
