@@ -1,0 +1,94 @@
+package QUE3;
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class QuizApp extends Frame implements ActionListener {
+    Label questionLabel;
+    CheckboxGroup optionsGroup;
+    Checkbox option1, option2, option3, option4;
+    Button nextButton;
+    int currentQuestion = 0;
+    int score = 0;
+
+    String[][] questions = {
+        {"What is the capital of India?", "Delhi", "Mumbai", "Chennai", "Tambaram"},
+        {"How number of characters are there totally", "26", "52", "66", "None of these"},
+        {"Which is the national animal of India?", "Lion", "Tiger", "Elephant", "Deer"}
+    };
+
+    int[] answers = {0, 4, 1}; // correct options for each question (0-indexed)
+
+    public QuizApp() {
+        setLayout(new FlowLayout());
+
+        questionLabel = new Label(questions[currentQuestion][0]);
+        add(questionLabel);
+
+        optionsGroup = new CheckboxGroup();
+        option1 = new Checkbox(questions[currentQuestion][1], optionsGroup, false);
+        option2 = new Checkbox(questions[currentQuestion][2], optionsGroup, false);
+        option3 = new Checkbox(questions[currentQuestion][3], optionsGroup, false);
+        option4 = new Checkbox(questions[currentQuestion][4], optionsGroup, false);
+
+        add(option1);
+        add(option2);
+        add(option3);
+        add(option4);
+
+        nextButton = new Button("Next");
+        nextButton.addActionListener(this);
+        add(nextButton);
+
+        setSize(400, 200);
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        Checkbox selected = optionsGroup.getSelectedCheckbox();
+        if (selected != null) {
+            int selectedIndex = -1;
+            if (selected == option1) selectedIndex = 0;
+            if (selected == option2) selectedIndex = 1;
+            if (selected == option3) selectedIndex = 2;
+            if (selected == option4) selectedIndex = 3;
+
+            if (selectedIndex == answers[currentQuestion]) {
+                score++;
+            }
+        }
+
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+            updateQuestion();
+        } else {
+            showScore();
+        }
+    }
+
+    public void updateQuestion() {
+        questionLabel.setText(questions[currentQuestion][0]);
+        option1.setLabel(questions[currentQuestion][1]);
+        option2.setLabel(questions[currentQuestion][2]);
+        option3.setLabel(questions[currentQuestion][3]);
+        option4.setLabel(questions[currentQuestion][4]);
+    }
+
+    public void showScore() {
+        remove(questionLabel);
+        remove(option1);
+        remove(option2);
+        remove(option3);
+        remove(option4);
+        nextButton.setLabel("Score");
+        questionLabel.setText("Your score: " + score + "/" + questions.length);
+        add(questionLabel);
+        validate();
+    }
+
+    public static void main(String[] args) {
+        new QuizApp();
+    }
+}
+
