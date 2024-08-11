@@ -1,0 +1,41 @@
+import java.sql.*;
+public class TRY {
+	public static void main(String [] args)throws Exception 
+	{
+		Display();
+	}	
+	public static void Insert() throws Exception
+	{
+		String url="jdbc:mysql://localhost:3306/RAJU";
+		String username="root";
+		String pass="Raju123$%";
+		String query ="insert into student values(5,'RAJU',9.7,'MECH')";		
+		Connection con=DriverManager.getConnection(url,username,pass);
+		Statement st= con.createStatement();
+		int rows = st.executeUpdate(query);
+		System.out.println("Rows affected" + rows);	
+		con.close();
+		
+	}
+	
+	public static void Display() throws Exception
+	{
+		String url="jdbc:mysql://localhost:3306/RAJU";
+		String username="root";
+		String pass="Raju123$%";
+		String query ="select * from student";		
+		
+		Connection con=DriverManager.getConnection(url,username,pass);
+		Statement st= con.createStatement();
+		ResultSet rs= st.executeQuery(query);
+		
+		while(rs.next())
+		{
+			System.out.println(" ID is "+rs.getInt(1));
+			System.out.println(" Name is is "+rs.getString(2));
+			System.out.println(" CGPA is "+rs.getFloat(3));
+			System.out.println(" Dept is "+rs.getString(4));
+		}	
+		con.close();		
+	}
+}
