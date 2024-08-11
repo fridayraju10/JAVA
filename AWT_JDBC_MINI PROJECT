@@ -1,0 +1,124 @@
+package MAGIC;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
+
+public class StudentDatabaseApp extends Frame implements ActionListener {
+    // Declare GUI components
+    TextField idField, nameField, cgpaField, deptField;
+    Button submitButton, displayButton;
+    TextArea displayArea;
+
+    public StudentDatabaseApp() {
+        // Set up the frame
+        setLayout(new FlowLayout());
+
+        // Initialize text fields
+        idField = new TextField(10);
+        nameField = new TextField(20);
+        cgpaField = new TextField(10);
+        deptField = new TextField(10);
+
+        // Initialize buttons
+        submitButton = new Button("Submit");
+        displayButton = new Button("Display");
+
+        // Initialize display area
+        displayArea = new TextArea(10, 50);
+        displayArea.setEditable(false);
+
+        // Add components to the frame
+        add(new Label("ID:"));
+        add(idField);
+        add(new Label("Name:"));
+        add(nameField);
+        add(new Label("CGPA:"));
+        add(cgpaField);
+        add(new Label("Department:"));
+        add(deptField);
+        add(submitButton);
+        add(displayButton);
+        add(displayArea);
+
+        // Set button actions
+        submitButton.addActionListener(this);
+        displayButton.addActionListener(this);
+
+        // Frame settings
+        setTitle("Student Database");
+        setSize(600, 400);
+        setVisible(true);
+
+        // Add window closing event
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                dispose();
+            }
+        });
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == submitButton) {
+            try {
+                Insert();
+            } catch (Exception ex) {
+                displayArea.setText("Error: " + ex.getMessage());
+            }
+        } else if (e.getSource() == displayButton) {
+            try {
+                Display();
+            } catch (Exception ex) {
+                displayArea.setText("Error: " + ex.getMessage());
+            }
+        }
+    }
+
+    public void Insert() throws Exception {
+        String url = "jdbc:mysql://localhost:3306/RAJU";
+        String username = "root";
+        String pass = "Raju123$%";
+        String query = "insert into student values(?, ?, ?, ?)";
+
+        Connection con = DriverManager.getConnection(url, username, pass);
+        PreparedStatement pst = con.prepareStatement(query);
+
+        pst.setInt(1, Integer.parseInt(idField.getText()));
+        pst.setString(2, nameField.getText());
+        pst.setFloat(3, Float.parseFloat(cgpaField.getText()));
+        pst.setString(4, deptField.getText());
+
+        int rows = pst.executeUpdate();
+        displayArea.setText("Rows affected: " + rows);
+
+        con.close();
+    }
+
+    public void Display() throws Exception {
+        String url = "jdbc:mysql://localhost:3306/RAJU";
+        String username = "root";
+        String pass = "Raju123$%";
+        String query = "select * from student";
+
+        Connection con = DriverManager.getConnection(url, username, pass);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(query);
+
+        StringBuilder sb = new StringBuilder();
+        while (rs.next()) {
+            sb.append("ID: ").append(rs.getInt(1)).append(", ");
+            sb.append("Name: ").append(rs.getString(2)).append(", ");
+            sb.append("CGPA: ").append(rs.getFloat(3)).append(", ");
+            sb.append("Dept: ").append(rs.getString(4)).append("\n");
+        }
+
+        displayArea.setText(sb.toString());
+        con.close();
+    }
+
+    public static void main(String[] args) {
+        new StudentDatabaseApp();
+    }
+}
+
