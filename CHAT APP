@@ -1,0 +1,114 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.net.*;
+
+public class ChatServer extends Frame implements ActionListener {
+    private static final long serialVersionUID = 1L;
+    TextArea chatArea;
+    TextField inputField;
+    PrintWriter out;
+    ServerSocket serverSocket;
+    Socket socket;
+
+    public ChatServer() {
+        chatArea = new TextArea();
+        chatArea.setEditable(false);
+        inputField = new TextField();
+
+        setLayout(new BorderLayout());
+        add(chatArea, BorderLayout.CENTER);
+        add(inputField, BorderLayout.SOUTH);
+
+        inputField.addActionListener(this);
+
+        setTitle("Chat Server");
+        setSize(400, 400);
+        setVisible(true);
+
+        try {
+            serverSocket = new ServerSocket(5555);  // Using port 7777
+            chatArea.append("Waiting for client connection...\n");
+            socket = serverSocket.accept();
+            chatArea.append("Client connected.\n");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(socket.getOutputStream(), true);
+
+            String message;
+            while ((message = in.readLine()) != null) {
+                chatArea.append("Client: " + message + "\n");
+            }
+        } catch (IOException e) {
+            chatArea.append("Connection error: " + e.getMessage() + "\n");
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String message = inputField.getText();
+        chatArea.append("Server: " + message + "\n");
+        out.println(message);
+        inputField.setText("");
+    }
+
+    public static void main(String[] args) {
+        new ChatServer();
+    }
+}
+----------------------------------------------------------
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.net.*;
+
+public class ChatClient extends Frame implements ActionListener {
+    private static final long serialVersionUID = 1L;
+    TextArea chatArea;
+    TextField inputField;
+    PrintWriter out;
+    Socket socket;
+
+    public ChatClient() {
+        chatArea = new TextArea();
+        chatArea.setEditable(false);
+        inputField = new TextField();
+
+        setLayout(new BorderLayout());
+        add(chatArea, BorderLayout.CENTER);
+        add(inputField, BorderLayout.SOUTH);
+
+        inputField.addActionListener(this);
+
+        setTitle("Chat Client");
+        setSize(400, 400);
+        setVisible(true);
+
+        try {
+            socket = new Socket("localhost", 7777);  // Change "localhost" to the server's IP address
+            chatArea.append("Connected to server.\n");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(socket.getOutputStream(), true);
+
+            String message;
+            while ((message = in.readLine()) != null) {
+                chatArea.append("Server: " + message + "\n");
+            }
+        } catch (IOException e) {
+            chatArea.append("Connection error: " + e.getMessage() + "\n");
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String message = inputField.getText();
+        chatArea.append("Client: " + message + "\n");
+        out.println(message);
+        inputField.setText("");
+    }
+
+    public static void main(String[] args) {
+        new ChatClient();
+    }
+}
