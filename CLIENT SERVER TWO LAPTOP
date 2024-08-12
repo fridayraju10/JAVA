@@ -1,0 +1,50 @@
+import java.io.DataOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.io.IOException;
+
+public class M2 {
+    public static void main(String[] args) {
+        try (ServerSocket s1 = new ServerSocket(7777)) {  // Use port 7777
+            System.out.println("Server is waiting for a client...");
+            
+            try (Socket s = s1.accept();
+                 DataOutputStream Do = new DataOutputStream(s.getOutputStream())) {
+                System.out.println("Client connected!");
+                Do.writeUTF("Hi RADHAKRISHNAN");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+---------------------------------M1-------------------------------
+import java.io.DataInputStream;
+import java.net.Socket;
+import java.io.IOException;
+
+public class M1 {
+    public static void main(String[] args) {
+        Socket s = null;
+        DataInputStream Di = null;
+        
+        try {
+   
+            s = new Socket("server_ip_address", 9999);  
+            Di = new DataInputStream(s.getInputStream());
+            String msg = Di.readUTF();
+            System.out.println("Server says: " + msg);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (Di != null) Di.close();
+                if (s != null) s.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+---------------------------------------------------------------
+
