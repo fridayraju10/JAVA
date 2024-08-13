@@ -92,3 +92,96 @@
     }
 }
 ---------------------
+6.public class Main {
+    public static void ram(int n) {
+        for (int i = 0; i < 20; i++) {
+            if (i % n == 3) {
+                return;
+            } else {
+                System.out.println("Hai");
+            }
+        }
+        System.out.println("Are u Ok?");
+    }
+
+    public static void main(String[] args) {
+        ram(4);
+    }
+}
+----------------------------------------------------
+7. public class Main {
+    public static void vit() {
+        vit_1();
+    }
+
+    public static void vit_1() {
+        System.out.println("Tiger");
+        for (char i : "yg".toCharArray()) {
+            vit_2(10);
+        }
+    }
+
+    public static void vit_2(int n) {
+        n = n + 5;
+        System.out.println(n * 2);
+    }
+
+    public static void main(String[] args) {
+        vit();
+    }
+}
+---------------------------------------------------------------------
+8. public class Main {
+
+    public static int q(int n) {
+        if (n == 1) {
+            return 3;
+        } else {
+            return q(n / 2);
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(q(120));
+    }
+}
+---------------------------------------------------
+9. public class Main {
+
+    public static int h(int n) {
+        if (n % 2 == 0) {
+            return n / 2;
+        } else {
+            return 3 * n + 1;
+        }
+    }
+
+    public static void main(String[] args) {
+        int result = 7;
+        int steps = 0;
+
+        while (result != 1) {
+            result = h(result);
+            steps++;
+        }
+
+        System.out.println(steps);
+    }
+}
+-----------------------------------------------------
+10. public class Main {
+
+    public static void main(String[] args) {
+        Object[] a = {23, 34, 45, 56, new String[]{"rose", "varma", "raju"}};
+        int j = 0;
+
+        for (int i = 0; i < a.length; i++) {
+            if (j == ((String[])a[4]).length) {
+                break;
+            }
+            System.out.println(((String[])a[4])[j] + ((String[])a[4])[j]);
+            j++;
+        }
+    }
+}
+---------------------------------------------------------------------
