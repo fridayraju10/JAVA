@@ -1,0 +1,59 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter boy name:");
+        String name1 = sc.nextLine();
+        System.out.println("Enter girl name:");
+        String name2 = sc.nextLine();
+
+        // Convert names to character lists
+        List<Character> l1 = new ArrayList<>();
+        List<Character> l2 = new ArrayList<>();
+
+        for (char c : name1.toCharArray()) {
+            l1.add(c);
+        }
+        for (char d : name2.toCharArray()) {
+            l2.add(d);
+        }
+
+        // Remove matching characters
+        for (int i = 0; i < l1.size(); i++) {
+            for (int j = 0; j < l2.size(); j++) {
+                if (l1.get(i).equals(l2.get(j))) {
+                    l1.set(i, '2'); // Mark matched characters as '2'
+                    l2.set(j, '2');
+                    break; // Break inner loop to avoid multiple matches for the same character
+                }
+            }
+        }
+
+        // Count remaining (non-'2') characters
+        int remainingCount = 0;
+        for (char c : l1) {
+            if (c != '2') {
+                remainingCount++;
+            }
+        }
+        for (char c : l2) {
+            if (c != '2') {
+                remainingCount++;
+            }
+        }
+
+        // FLAMES logic
+        List<Character> flames = new ArrayList<>(Arrays.asList('F', 'L', 'A', 'M', 'E', 'S'));
+        int index = 0;
+
+        while (flames.size() > 1) {
+            // Calculate position to remove
+            index = (index + remainingCount - 1) % flames.size();
+            flames.remove(index); // Remove the character at the calculated position
+        }
+
+        // Output the result
+        System.out.println("FLAMES result: " + flames.get(0));
+    }
+}
