@@ -1,0 +1,21 @@
+import java.util.HashMap;
+public class Main {
+    public static void findSecurityKey(int data) {
+        HashMap<Character, Integer> frequency = new HashMap<>();
+        String dataStr = Integer.toString(data);
+        for (int i = 0; i < dataStr.length(); i++) {
+            char digit = dataStr.charAt(i);
+            frequency.put(digit, frequency.getOrDefault(digit, 0) + 1);
+        }
+        int repeatingCount = 0;
+        for (int count : frequency.values()) {
+            if (count > 1) {
+                repeatingCount++;
+            }
+        }
+        System.out.println(repeatingCount);
+    }
+    public static void main(String[] args) {
+        findSecurityKey(578378923);
+    }
+}
