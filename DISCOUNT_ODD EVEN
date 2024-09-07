@@ -1,0 +1,20 @@
+public class Main {
+    public static void calculateDiscount(int billAmount) {
+        int oddSum = 0;
+        int evenSum = 0;
+        while (billAmount > 0) {
+            int digit = billAmount % 10;  
+            if (digit % 2 == 0) {  
+                evenSum += digit;
+            } else {  // Odd digit
+                oddSum += digit;
+            }
+            billAmount /= 10;  
+        }
+        int discount = oddSum * evenSum;
+        System.out.println(discount);
+    }
+    public static void main(String[] args) {
+        calculateDiscount(2514795);  
+    }
+}
