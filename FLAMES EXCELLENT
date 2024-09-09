@@ -1,0 +1,65 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Arrays;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the Boy name without spaces: ");
+        String name1 = scanner.nextLine();
+        System.out.print("Enter the girl name without spaces: ");
+        String name2 = scanner.nextLine();
+
+        List<Character> l1 = new ArrayList<>();
+        List<Character> l2 = new ArrayList<>();
+
+        for (char c : name1.toCharArray()) {
+            l1.add(c);
+        }
+        System.out.println(l1);
+
+        for (char c : name2.toCharArray()) {
+            l2.add(c);
+        }
+        System.out.println(l2);
+
+        int a = l1.size();
+        int b = l2.size();
+
+        for (int x = 0; x < a; x++) {
+            for (int y = 0; y < b; y++) {
+                if (l1.get(x).equals(l2.get(y))) {
+                    l1.set(x, '2');
+                    l2.set(y, '2');
+                }
+            }
+        }
+        System.out.println(l1);
+        System.out.println(l2);
+
+        a=0;
+        b=0;
+
+        for (char c : l1) {
+            if (c != '2') {
+                a++;
+            }
+        }
+
+        for (char c : l2) {
+            if (c != '2') {
+                b++;
+            }
+        }
+        int cnt=a+b;
+        System.out.println(cnt);
+        List<Character> ans=new ArrayList<>(Arrays.asList('f','l','a','m','e','s'));
+        int f=0;
+        while(ans.size()>1)
+        {
+            f=(f+(cnt-1))%ans.size();
+            ans.remove(f);
+        }
+        System.out.println(ans);
+    }
+}
