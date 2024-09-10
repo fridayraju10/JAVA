@@ -1,0 +1,98 @@
+import java.util.Scanner;
+public class Main {
+    static char[] square = {'o', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    public static void main(String[] args) throws InterruptedException {
+        int player = 1, i, choice;
+        char mark;
+        Scanner in = new Scanner(System.in);
+        do {
+            drawBoard();
+            player = (player % 2) == 1 ? 1 : 2;
+            System.out.print("Player " + player + ", enter the choice: ");
+            choice = in.nextInt();
+            mark = (player == 1) ? 'X' : 'O';
+
+            if (choice == 1 && square[1] == '1')
+                square[1] = mark;
+            else if (choice == 2 && square[2] == '2')
+                square[2] = mark;
+            else if (choice == 3 && square[3] == '3')
+                square[3] = mark;
+            else if (choice == 4 && square[4] == '4')
+                square[4] = mark;
+            else if (choice == 5 && square[5] == '5')
+                square[5] = mark;
+            else if (choice == 6 && square[6] == '6')
+                square[6] = mark;
+            else if (choice == 7 && square[7] == '7')
+                square[7] = mark;
+            else if (choice == 8 && square[8] == '8')
+                square[8] = mark;
+            else if (choice == 9 && square[9] == '9')
+                square[9] = mark;
+            else {
+                System.out.println("Invalid option!");
+                player--;
+            }
+
+            i = checkWin();
+            player++;
+            Thread.sleep(1000); 
+            clearScreen(); 
+
+        } while (i == -1);
+
+        drawBoard();
+        if (i == 1) {
+            System.out.println("==> Player " + --player + " won");
+        } else {
+            System.out.println("==> Game draw");
+        }
+        in.close();
+    }
+
+    static int checkWin() {
+        if (square[1] == square[2] && square[2] == square[3])
+            return 1;
+        else if (square[4] == square[5] && square[5] == square[6])
+            return 1;
+        else if (square[7] == square[8] && square[8] == square[9])
+            return 1;
+        else if (square[1] == square[4] && square[4] == square[7])
+            return 1;
+        else if (square[2] == square[5] && square[5] == square[8])
+            return 1;
+        else if (square[3] == square[6] && square[6] == square[9])
+            return 1;
+        else if (square[1] == square[5] && square[5] == square[9])
+            return 1;
+        else if (square[3] == square[5] && square[5] == square[7])
+            return 1;
+        else if (square[1] != '1' && square[2] != '2' && square[3] != '3' &&
+                square[4] != '4' && square[5] != '5' && square[6] != '6' &&
+                square[7] != '7' && square[8] != '8' && square[9] != '9')
+            return 0;
+        else
+            return -1;
+    }
+
+    static void drawBoard() {
+        System.out.println("\n\n\t Tic Tac Toe \n\n");
+        System.out.println("Player 1 (X) - Player 2 (O)\n");
+        System.out.println("     |     |     ");
+        System.out.println("  " + square[1] + "  |  " + square[2] + "  |  " + square[3]);
+        System.out.println("_____|_____|_____");
+        System.out.println("     |     |     ");
+        System.out.println("  " + square[4] + "  |  " + square[5] + "  |  " + square[6]);
+        System.out.println("_____|_____|_____");
+        System.out.println("     |     |     ");
+        System.out.println("  " + square[7] + "  |  " + square[8] + "  |  " + square[9]);
+        System.out.println("     |     |     ");
+        System.out.flush(); 
+    }
+
+    static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush(); 
+    }
+}
