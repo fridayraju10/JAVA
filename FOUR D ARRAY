@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        int[][][][] a = new int[4][3][2][2];
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("FILL THE MATRIX ");
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                for (int k = 0; k < 2; k++) {
+                    for (int l = 0; l < 2; l++) {
+                        System.out.printf("Enter value for a[%d][%d][%d][%d]: ", i, j, k, l);
+                        a[i][j][k][l] = scanner.nextInt();
+                    }
+                }
+            }
+        }
+
+       
+        System.out.println("\nArray in matrix format:");
+        for (int i = 0; i < 4; i++) {
+            System.out.println("Block " + (i + 1) + ":");
+            for (int j = 0; j < 3; j++) {
+                System.out.println(" Sub-block " + (j + 1) + ":");
+                for (int k = 0; k < 2; k++) {
+                    for (int l = 0; l < 2; l++) {
+                        System.out.print(a[i][j][k][l] + " ");
+                    }
+                    System.out.println(); 
+                }
+                System.out.println(); 
+            }
+            System.out.println(); 
+        }
+
+        scanner.close();
+    }
+}
