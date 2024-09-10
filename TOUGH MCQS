@@ -1,0 +1,226 @@
+1. s1.compareTo(s2) in java returns
+a)negative if(s1>s2)
+b)positive if(s1>s2)
+c)negative if(s2>s1)
+d)positive if(s2>s1)
+e) a& b
+f) c& d
+
+2. Which of the following is true?
+   a) Class variables is called instance variables
+   b) Static methods  can access only static data
+   c) methods return type does not play role in method overloading
+   d)only a and c
+   e) All of the above
+   f) only a and b
+
+3. Which of the following is true?
+    a)abstract- methods can never be subclassed
+    b) final- methods must always be redefined in subclass
+    c) varargs- specified numbers of parameters
+    d) class can defined inside another class (inner class)
+
+--------------------------------------------------------
+4......public class Main {
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5, 6};
+        System.out.println("Result: " + processArray(arr));
+    }
+    public static int processArray(int[] arr) {
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if ((arr[i] & 1) == 0) {
+                continue; 
+            }
+            sum += arr[i];
+            if (sum > 10) {
+                break; 
+            }
+            if (arr[i] == 5) {
+                return sum; 
+            }
+        }
+        return sum; 
+    }
+}
+---------------------------------------------------
+5.....public class Main {
+    
+    public static void flower(int a)
+    {
+       if(a==4)
+       return;
+       System.out.print(a+10 +" ");
+       flower(a+1);
+       System.out.print(a+" ");
+    }
+    public static void main(String[] args) 
+    {
+        flower(1);
+    }
+}
+ --------------------------------------------------------
+
+6....public class Main {
+    
+    public static void raju(int a)
+    {
+       if(a==1)
+       return;
+       a--;
+       raju(a);
+       System.out.println("Hai ");
+       raju(a);
+    }
+    public static void main(String[] args) 
+    {
+        raju(5);
+    }
+}
+----------------------------------------------------------
+7....public class Main {
+
+    public static void main(String[] args) {
+        int a=10;
+        System.out.println(a++ + ++a);
+        System.out.println(++a);
+        System.out.println(a-- + --a);
+    }
+}
+-----------------------------------------------------
+8...import java.util.HashMap;
+
+public class HashMapMCQ {
+    public static void main(String[] args) {
+        HashMap<String, Integer> map = new HashMap<>();
+        
+        map.put("A", 1);
+        map.put(null, 2);
+        map.put("B", null);
+        map.put("A", null);
+        map.put(null, 3);
+        map.put("C", 4);
+        
+        System.out.println(map);
+    }
+}
+------------------------------------------------------------
+9...def coinCombinations(n):
+    if n == 0:
+        return 1
+    if n == 1:
+        return 1
+    if n == 2:
+        return 2
+    return coinCombinations(n - 1) + coinCombinations(n - 3)
+
+n = 5
+print(coinCombinations(n))
+--------------------POINTERS--------------------------------
+10...int a=10;       address of a is '4302'
+       int *p;           addrss of p is '4333'
+       int **p2;      address of p2='8767'
+       p=&a;
+       p2=&p;
+
+
+print(**p2)  
+
+
+
+--------------------------------------------------
+11...import java.util.Stack;
+public class ReverseStringUsingStack {
+    public static String MAS(String input) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+        StringBuilder S = new StringBuilder();
+        while (!stack.isEmpty()) {
+            S.append(stack.pop());
+        }
+        
+        return S.toString();
+    }
+    
+    public static void main(String[] args) {
+        String input = "ARE YOU OK";
+        System.out.println("STRING IS " + input);
+        
+        String A = MAS(input);
+        System.out.println("PROCESSED string: " + A);
+    }
+}
+-------------------------------------------------------------------
+12...import java.util.Arrays;
+public class Main {
+    public static void main(String[] args) {
+        int N = 8;
+        int[] arr = {1, 3, 2, 5, 4, 7, 6, 8};
+        int K = 4;
+        sortArray(arr, K);
+        System.out.println("Output: " + Arrays.toString(arr));
+    }
+
+    public static void sortArray(int[] arr, int K) {
+
+        Arrays.sort(arr, 0, K);
+        Arrays.sort(arr, K, arr.length);
+
+        for (int i = K, j = arr.length - 1; i < j; i++, j--) {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+}
+-----------------------------------------------------------------------------
+13...import java.util.Arrays;
+public class Main 
+{
+    public static void main(String[] args) 
+    {
+        String str1 = "Listen";
+        String str2 = "silent";
+        if (str1.length() != str2.length()) 
+        {
+            System.out.println("No");
+        } 
+        else 
+        {
+            char[] array1 = str1.toCharArray();
+            char[] array2 = str2.toCharArray();
+            Arrays.sort(array1);
+            Arrays.sort(array2);
+            boolean a = Arrays.equals(array1, array2);
+            if (a) 
+            {
+                System.out.println("Yes");
+            } 
+            else 
+            {
+                System.out.println("No");
+            }
+        }
+    }
+}
+----------------------------------------------
+14..import java.util.Scanner;
+
+public class Main {
+    public static void raju(int num, int i) {
+        if (num == 1) {
+            return;
+        }
+        while (num % i != 0) 
+            i += 1;
+        System.out.print(i + " ");
+        raju(num / i, i);
+    }
+    public static void main(String[] args) {
+        raju(100, 2); 
+    }
+}
+----------------------------------------------------------------
