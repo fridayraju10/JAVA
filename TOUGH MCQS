@@ -224,3 +224,70 @@ public class Main {
     }
 }
 ----------------------------------------------------------------
+15. What will be the output of following code:
+	main()
+	{
+	while(!!7)
+	printf(“Hai”);
+	return 0;
+	}
+	(a) Hai
+	(b) HaiHai
+	(c) Infinite loop
+	(d) None of these
+----------------------------------------------------------------
+16. Find the output of following pseudo code :
+	integer a = 40, b = 35, c = 20, d = 10
+	Comment about the output of the following two statements:
+	print a * b / c – d
+	print a * b / (c – d)
+	(a) Differ by 80
+	(b) Same
+	(c) Differ by 50
+	(d) Differ by 160
+---------------------------------------------------------------
+17. integer a = 60, b = 35, c = -30
+	What will be the output of the following two statements:
+	print ( a > 45 OR b > 50 AND c > 10 )
+	print ( ( a > 45 OR b > 50 ) AND c > 10 )
+	(a) 0 and 1
+	(b) 0 and 0
+	(c) 1 and 1
+	(d) 1 and 0
+----------------------------------------------------------
+18. What would be the output of the following code
+	For input a = 5 & b = 5.
+	function (input a, input b)
+	If (a < b)
+	return function (b, a)
+	elseif (b != 0)
+	return (a * function (a, b - 1))
+	else
+	return 1
+	(a) 15625 				(b) 625
+	(c) 3125				(d) nONE OF THESE
+-------------------------------------------------------------------
+19.Set Integer m=3
+	Set Integer n=5
+	Swith(m/m%n)
+	Case 1: m=m-n
+	Case 2: m+n
+	Case 3: m=m*n
+	Case 4: m=m/n
+	default.m=m
+	end-swith
+	display m
+	(a) -2
+	(b) 3
+	(c) Error
+	(d) -15
+----------------------------------------------------------------
+20. def RAJU(DATA):
+    value = 0
+    length = len(DATA)
+    for i in range(length):
+        b = int(DATA[length - i - 1])
+        value += b * (2 ** i)
+    print(value)
+RAJU("1001")
+--------------------------------------------------------
