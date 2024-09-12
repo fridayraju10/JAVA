@@ -1,0 +1,69 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of teams (less than 10): ");
+        int numTeams = scanner.nextInt();
+        scanner.nextLine();
+        if (numTeams >= 10) {
+            System.out.println("Number of teams should be less than 10.");
+            return;
+        }
+        System.out.print("Enter the number of matches to be played between each team (less than 4): ");
+        int numMatchesPerPair = scanner.nextInt();
+        scanner.nextLine();  
+
+        if (numMatchesPerPair >= 4) {
+            System.out.println("Number of matches per pair should be less than 4.");
+            return;
+        }
+
+        String[] teams = new String[numTeams];
+        for (int i = 0; i < numTeams; i++) {
+            System.out.print("Enter name for team " + (i + 1) + ": ");
+            teams[i] = scanner.nextLine();
+        }
+
+        ArrayList<String> matches = new ArrayList<>();
+        for (int i = 0; i < numTeams; i++) {
+            for (int j = i + 1; j < numTeams; j++) {
+                for (int m = 1; m <= numMatchesPerPair; m++) {
+                    matches.add(teams[i] + " vs " + teams[j]);
+                }
+            }
+        }
+        ArrayList<String> finalSchedule = new ArrayList<>();
+        String lastTeam1 = "", lastTeam2 = "";
+
+        while (!matches.isEmpty()) {
+            boolean matchAdded = false;
+            for (int i = 0; i < matches.size(); i++) {
+                String[] teamsInMatch = matches.get(i).split(" vs ");
+                String team1 = teamsInMatch[0];
+                String team2 = teamsInMatch[1];
+
+                if (!team1.equals(lastTeam1) && !team1.equals(lastTeam2) &&
+                    !team2.equals(lastTeam1) && !team2.equals(lastTeam2)) {
+
+                    finalSchedule.add(matches.get(i));
+                    lastTeam1 = team1;
+                    lastTeam2 = team2;
+                    matches.remove(i);
+                    matchAdded = true;
+                    break;
+                }
+            }
+            if (!matchAdded) {
+                lastTeam1 = "";
+                lastTeam2 = "";
+            }
+        }
+        System.out.println("\nMatch Schedule:");
+        for (int i = 0; i < finalSchedule.size(); i++) {
+            System.out.println("Match " + (i + 1) + ": " + finalSchedule.get(i));
+        }
+
+        scanner.close();
+    }
+}
