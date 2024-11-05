@@ -1,0 +1,26 @@
+public class Main {
+    public static boolean isPermutationOfPalindrome(String str) {
+        int[] charCount = new int[26];
+        int oddCount = 0;
+
+        for (char ch : str.toCharArray()) {
+            if (Character.isLetter(ch)) {
+                int index = Character.toLowerCase(ch) - 'a';
+                charCount[index]++;
+                if (charCount[index] % 2 == 1)
+                    oddCount++;
+                else
+                    oddCount--;
+            }
+        }
+        return oddCount <= 1;
+    }
+
+    public static void main(String[] args) {
+        String str = "taco cat";
+        if (isPermutationOfPalindrome(str))
+            System.out.println("True");
+        else
+            System.out.println("False");
+    }
+}
