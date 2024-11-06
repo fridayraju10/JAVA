@@ -1,0 +1,91 @@
+int a=10;       address of a is '4302'
+       int *p;           addrss of p is '4333'
+       int **p2;      address of p2='8767'
+       p=&a;
+       p2=&p;
+
+
+print(**p2) 
+------------------------------------------------------
+public class Main {
+    public static void main(String[] args) {
+        String word = "HKNUDT";
+
+        for (int i = 0; i < word.length(); i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print((char) (word.charAt(j) + 1));
+            }
+            System.out.println();
+        }
+    }
+}
+--------------------------------------------------
+public class Main {
+    public static int raju(int a) {
+        return a + 1;
+    }
+    
+    public static int varma(int b) {
+        return (raju(b) + 2);
+    }
+    
+    public static void mks1() {  
+        mks_1(10);
+    }
+
+    public static void mks() {
+        System.out.println("Tiger");
+        for (char i : "yg".toCharArray()) {
+            mks_1(10);
+        }
+    }
+
+    public static void mks_1(int n) {
+        n = n + 5;
+        System.out.println(n * 2);
+    }
+
+    public static void main(String[] args) {
+        for (int i = raju(1); i < varma(2); i++) {
+            mks();
+        }
+    }
+}
+----------------------------------------------------
+public class Main 
+{
+    public static void main(String[] args) 
+    {
+        int a=8;
+        a++;
+        a++;
+        ++a;
+        a--;
+        System.out.println(a++ + a--);
+        System.out.println(--a - a);
+        System.out.println(a);
+    }
+}
+---------------------------------------------------------
+public class Main 
+{
+    public static void love(int a)
+    {
+        if(a>8)
+        return;
+        System.out.println("Lubber Pandhu");
+        love(a+2);
+        System.out.println("Viduthalai");
+    }
+    
+    public static void main(String[] args) 
+    {
+        for(int i=4;i<7;i++)
+        {
+            System.out.println("\n----------------");
+            love(i);
+        }
+    }
+}
+
+----------------------------------------------------
