@@ -1,0 +1,40 @@
+import java.util.Arrays;
+
+public class Main {
+    public static int minMeetingRooms(int[][] intervals) {
+        int n = intervals.length;
+        int[] startTimes = new int[n];
+        int[] endTimes = new int[n];
+
+        // Separate the start and end times into different arrays
+        for (int i = 0; i < n; i++) {
+            startTimes[i] = intervals[i][0];
+            endTimes[i] = intervals[i][1];
+        }
+
+        // Sort the start and end times
+        Arrays.sort(startTimes);
+        Arrays.sort(endTimes);
+
+        int roomsRequired = 0;
+        int endPointer = 0;
+
+        // Go through each start time and check if a room is available
+        for (int start : startTimes) {
+            if (start < endTimes[endPointer]) {
+                // No room is free, so we need a new room
+                roomsRequired++;
+            } else {
+                // One meeting has ended, free up a room
+                endPointer++;
+            }
+        }
+
+        return roomsRequired;
+    }
+
+    public static void main(String[] args) {
+        int[][] intervals = { {0, 30}, {5, 10}, {15, 20}};
+        System.out.println("Minimum number of meeting rooms required: " + minMeetingRooms(intervals));
+    }
+}
