@@ -1,0 +1,59 @@
+import java.util.*;
+
+class Graph {
+	private int vertices; // Number of vertices in the graph
+	private LinkedList<Integer>[] adjacencyList; // Adjacency list
+
+	// Constructor
+	public Graph(int vertices) { 
+		this.vertices = vertices;
+		adjacencyList = new LinkedList[vertices];
+		for (int i = 0; i < vertices; i++) {
+			adjacencyList[i] = new LinkedList<>();
+		}
+	}
+
+	// Method to add an edge to the graph
+	public void addEdge(int source, int destination) {
+		adjacencyList[source].add(destination);
+		adjacencyList[destination].add(source); // For undirected graph
+	}
+
+	// BFS algorithm
+	public void bfs(int startVertex) {
+		boolean[] visited = new boolean[vertices]; // Array to track visited nodes
+		Queue<Integer> queue = new LinkedList<>();
+
+		visited[startVertex] = true; // Mark the starting vertex as visited
+		queue.add(startVertex); // Add the starting vertex to the queue
+
+		System.out.println("BFS traversal starting from vertex " + startVertex + ":");
+
+		while (!queue.isEmpty()) {
+			int vertex = queue.poll();
+			System.out.print(vertex + " "); // Process the vertex
+
+			// Iterate through adjacent vertices
+			for (int adj : adjacencyList[vertex]) {
+				if (!visited[adj]) {
+					visited[adj] = true; // Mark as visited
+					queue.add(adj); // Add to the queue
+				}
+			}
+		}
+	}
+}
+
+public class Main {
+	public static void main(String[] args) {
+		Graph graph = new Graph(6); // Create a graph with 6 vertices
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(1, 3);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 5);
+		graph.addEdge(4, 5);
+
+		graph.bfs(0); // Perform BFS starting from vertex 0
+	}
+}
