@@ -1,0 +1,33 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    
+    public static String intToRoman(int num) {
+       
+        Map<Integer, String> romanMap = new HashMap<>();
+     
+        romanMap.put(10, "X");
+        romanMap.put(9, "IX");
+        romanMap.put(5, "V");
+        romanMap.put(4, "IV");
+        romanMap.put(1, "I");
+        
+        int[] values = { 10, 9, 5, 4, 1};
+        String roman = "";
+        
+        for (int value : values) {
+            while (num >= value) {
+                roman += romanMap.get(value);
+                num -= value;
+            }
+        }
+        
+        return roman;
+    }
+    
+    public static void main(String[] args) {
+        int number = 19;
+        System.out.println("The Roman numeral for " + number + " is: " + intToRoman(number));
+    }
+}
