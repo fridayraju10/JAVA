@@ -1,0 +1,24 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args)
+    {
+        String str="pwwkew";
+        int s=0,e=0;
+        Set<Character> seen=new HashSet<>();
+        int windowsize=1;
+        while(e<str.length())
+        {
+            char ch=str.charAt(e);
+            while(seen.contains(ch))
+            {
+              seen.remove(str.charAt(s));
+              s++;
+            }
+            
+            seen.add(ch);
+            windowsize=seen.size();
+            e=e+1;
+        }
+        System.out.println(windowsize);
+    }
+}
