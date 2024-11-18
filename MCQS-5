@@ -1,0 +1,49 @@
+1. s1.compareTo(s2) in java 
+a)returns negative if(s1>s2)
+b)return positive if(s1>s2)
+c)it is Boolean function
+d)it compare util it encounters difference in characters or till end
+
+
+2. Which of the following is true?
+   a) Class variables is called instance variables
+   b) Static methods  can access only static data
+   c) methods return type does not play role in method overloading
+   d)protected is atmost secure access specifier
+   
+
+3. Which of the following is true?
+    a)abstract- methods can never be subclassed
+    b) final- methods must always be redefined in subclass
+    c) varargs- specified numbers of parameters
+    d) class can defined inside another class (inner class)
+
+4. public class Main {
+
+    public static void main(String[] args) {
+       int a=3;
+       for(int i=1;i<7;i++)
+       {
+         i=i+1; 
+         if(i==3 || i==6)
+         continue;
+         for(int j=1;j<=i;j++)
+         {
+           a++;
+         }
+        }
+        System.out.println(a);
+
+    }
+}
+        
+
+----------------------------------------
+public class Main {
+
+    public static void main(String[] args) {
+        int a=011;
+        int b=0111;
+        System.out.println(a+b);
+    }
+}
