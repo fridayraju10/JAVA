@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class CapitalizeFirstLetter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input the number of strings
+        System.out.print("Enter the number of strings: ");
+        int n = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline
+
+        // Array to store the strings
+        String[] strings = new String[n];
+
+        // Input strings
+        System.out.println("Enter the strings:");
+        for (int i = 0; i < n; i++) {
+            strings[i] = scanner.nextLine();
+        }
+
+        // Process and print the strings
+        System.out.println("Formatted Strings:");
+        for (String str : strings) {
+            if (str == null || str.isEmpty()) {
+                System.out.println(str); // Skip formatting for empty strings
+                continue;
+            }
+            // Capitalize the first letter
+            char firstChar = Character.toUpperCase(str.charAt(0));
+            String remaining = str.substring(1).toLowerCase();
+            System.out.println(firstChar + remaining);
+        }
+
+        scanner.close();
+    }
+}
