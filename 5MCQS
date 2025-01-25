@@ -57,3 +57,21 @@ public class Main
 	}
 }
 ----------------------------------------------------------------
+which of the following statetment(s) are true 
+i) trim() return string Array 
+ii) all user defined functions should have return Type
+iii) all inbuilt functions should have argument 
+iv)CompareTo() returns boolean type 
+v)isLowerCase() takes string as an arguement 
+vi) isCharAt() takes integer as arguement
+-------------------------------------------------------------------
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        int[][] a = {{2, 3, 1}, {20, 10, 30}, {23, 12, 9}, {11, 7, 3}};
+        Arrays.sort(a, (row1, row2) -> Integer.compare(row1[0], row2[0]));
+        System.out.println(Arrays.deepToString(a));
+    }
+}
+----------------------------------------------------------------
