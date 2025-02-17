@@ -1,0 +1,34 @@
+------------------------SINGLE INHERITANCE---------------------------
+class Vehicle 
+{
+    String brand;
+    int speed;
+    void start() 
+    {
+      System.out.println("Vehicle is starting...");
+    }
+}
+
+class Car extends Vehicle 
+{
+   int numDoors;
+   void honk() 
+   {
+     System.out.println("Car is honking...");
+   }
+}
+
+public class Main 
+{
+  public static void main(String[] args) 
+  {
+    Car myCar = new Car();
+    myCar.brand = "Toyota";
+    myCar.speed = 120;
+    myCar.numDoors = 4;
+    myCar.start();
+    myCar.honk();
+    System.out.println("Brand: " + myCar.brand + ", Speed: " + myCar.speed + " km/h,Doors: " + myCar.numDoors);
+  }
+}
+----------------------------------------------------------------------------------------
