@@ -1,0 +1,26 @@
+abstract class ElectronicDevice 
+{
+  abstract void powerOn(); 
+  void displayInfo() 
+  { 
+    System.out.println("This is an electronic device.");
+  }
+}
+
+class Smartphone extends ElectronicDevice 
+{
+   @Override
+   void powerOn() 
+   {
+    System.out.println("Smartphone is powering on...");
+   }
+}
+public class Main 
+{
+   public static void main(String[] args) 
+   {
+      ElectronicDevice device = new Smartphone();
+      device.powerOn();
+      device.displayInfo();
+   }
+}
