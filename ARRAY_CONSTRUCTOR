@@ -1,0 +1,69 @@
+class Students {
+    static String department = "Computer Science";
+    String name;
+    double cgpa;
+
+    Students(String name, double cgpa) {
+        this.name = name;
+        this.cgpa = cgpa;
+    }
+
+    void display() {
+        System.out.println("Department: " + department);
+        System.out.println("Name: " + name);
+        System.out.println("CGPA: " + cgpa);
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Students[] studentsArray = new Students[5]; // Array of objects
+
+        studentsArray[0] = new Students("Alice", 8.5);
+        studentsArray[1] = new Students("Bob", 7.8);
+        studentsArray[2] = new Students("Charlie", 9.0);
+        studentsArray[3] = new Students("David", 8.2);
+        studentsArray[4] = new Students("Eve", 7.5);
+
+        for (int i = 0; i < studentsArray.length; i++) {
+            studentsArray[i].display();
+        }
+    }
+}
+-------------------------------------------
+class Students {
+    static String department = "Computer Science"; 
+    String name;
+    double cgpa;
+
+    void setData(String name, double cgpa) {
+        this.name = name;
+        this.cgpa = cgpa;
+    }
+
+    void display() {
+        System.out.println("Department: " + department);
+        System.out.println("Name: " + name);
+        System.out.println("CGPA: " + cgpa);
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Students[] studentsArray = new Students[5]; // Array of objects
+        String[] names = {"Alice", "Bob", "Charlie", "David", "Eve"};
+        double[] cgpas = {8.5, 7.8, 9.0, 8.2, 7.5};
+
+        for (int i = 0; i < studentsArray.length; i++) {
+            studentsArray[i] = new Students();
+            studentsArray[i].setData(names[i], cgpas[i]);
+        }
+
+        for (int i = 0; i < studentsArray.length; i++) {
+            studentsArray[i].display();
+        }
+    }
+}
+-------------------------------------------------------------------
