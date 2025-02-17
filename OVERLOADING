@@ -1,0 +1,48 @@
+class Calculator 
+{
+   int add(int a, int b) 
+   {
+     return a + b;
+   }
+   int add(int a, int b, int c) 
+   {
+     return a + b + c;
+   }
+}
+
+public class Main 
+{
+  public static void main(String[] args)
+  {
+    Calculator calc = new Calculator();
+    System.out.println("Sum of 2 numbers: " + calc.add(5, 10));
+    System.out.println("Sum of 3 numbers: " + calc.add(5, 10, 15));
+  }
+}
+___________________________________________________
+class Printer 
+{
+  void print(int num) 
+  {
+    System.out.println("Integer: " + num);
+  }
+  void print(double num) 
+  {
+    System.out.println("Double: " + num);
+  }
+  void print(String text) 
+  {
+    System.out.println("String: " + text);
+  }
+}
+public class Main 
+{
+  public static void main(String[] args) 
+  {
+    Printer printer = new Printer();
+    printer.print(100);
+    printer.print(99.99);
+    printer.print("Hello, Java!");
+  }
+}
+------------------------------------------------------------------
