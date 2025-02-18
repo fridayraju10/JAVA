@@ -1,0 +1,93 @@
+class Emp 
+{ 
+    String name, companyName; 
+    int empId; 
+    double salary;
+
+   Emp(String name, String companyName, int empId, double salary) 
+    {
+      this.name = name;
+      this.companyName = companyName;
+      this.empId = empId;
+      this.salary = salary;
+    }
+
+    double calculateTax() 
+    {
+      return salary * 0.1; 
+    }
+
+    void display() 
+    {
+      System.out.println("Employee Details:");
+      System.out.println("Name: " + name);
+      System.out.println("Company: " + companyName);
+      System.out.println("Employee ID: " + empId);
+      System.out.println("Salary: " + salary);
+      System.out.println("Tax Deduction: " + calculateTax());
+   }
+}
+
+class BoardMembers extends Emp 
+{ 
+    int profitSharePercentage;
+
+    BoardMembers(String name, String companyName, int empId, double salary, int profitSharePercentage) 
+    {
+      super(name, companyName, empId, salary);
+      this.profitSharePercentage = profitSharePercentage;
+    }
+
+    double calculateProfitSharing(double companyProfit)
+    {
+      return (companyProfit * profitSharePercentage) / 100;
+    }
+
+    void display(double companyProfit) 
+    {
+      super.display();
+      System.out.println("Profit Share Percentage: " + profitSharePercentage + "%");
+      System.out.println("Profit Sharing Amount: " + calculateProfitSharing(companyProfit));
+    }
+}
+
+class Directors extends BoardMembers 
+{ 
+    int hraPercentage;
+
+    Directors(String name, String companyName, int empId, double salary, int profitSharePercentage, int hraPercentage) 
+    {
+      super(name, companyName, empId, salary, profitSharePercentage);
+      this.hraPercentage = hraPercentage;
+    }
+
+    double calculateHra() 
+    {
+      return (salary * hraPercentage) / 100;
+    }
+
+    void display(double companyProfit) 
+    {
+      super.display(companyProfit);
+      System.out.println("HRA Percentage: " + hraPercentage + "%");
+      System.out.println("HRA Amount: " + calculateHra());
+    }
+}
+
+public class Main 
+{ 
+    public static void main(String[] args) 
+    { 
+      Emp emp = new Emp("John", "ABC Corp", 101, 50000); 
+      BoardMembers boardMember = new BoardMembers("Alice", "XYZ Ltd", 102, 80000, 5); 
+      Directors director = new Directors("Robert", "PQR Inc", 103, 100000, 10, 15);
+
+      double companyProfit = 500000;
+    
+      emp.display();
+      System.out.println("--------------------------------");
+      boardMember.display(companyProfit);
+      System.out.println("--------------------------------");
+      director.display(companyProfit);
+   }
+}
