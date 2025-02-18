@@ -1,76 +1,78 @@
 class Emp 
 { 
-    String name, companyName; 
+    String name, cName; 
     int empId; 
-    double salary;
+    double sal;
+    String designation="Employee";
 
-   Emp(String name, String companyName, int empId, double salary) 
+   Emp(String name, String cName, int empId, double sal) 
     {
       this.name = name;
-      this.companyName = companyName;
+      this.cName = cName;
       this.empId = empId;
-      this.salary = salary;
+      this.sal = sal;
     }
 
-    double calculateTax() 
+    double Tax() 
     {
-      return salary * 0.1; 
+      return sal * 0.1; 
     }
 
     void display() 
     {
       System.out.println("Employee Details:");
+      System.out.println("Designation:"+designation);
       System.out.println("Name: " + name);
-      System.out.println("Company: " + companyName);
+      System.out.println("Company: " + cName);
       System.out.println("Employee ID: " + empId);
-      System.out.println("Salary: " + salary);
-      System.out.println("Tax Deduction: " + calculateTax());
+      System.out.println("Salary: " + sal);
+      System.out.println("Tax Deduction: " +Tax());
    }
 }
 
 class BoardMembers extends Emp 
 { 
-    int profitSharePercentage;
-
-    BoardMembers(String name, String companyName, int empId, double salary, int profitSharePercentage) 
+    int pp;
+    String designation="Board Members ";
+    BoardMembers(String name, String cName, int empId, double sal, int pp) 
     {
-      super(name, companyName, empId, salary);
-      this.profitSharePercentage = profitSharePercentage;
+      super(name, cName, empId, sal);
+      this.pp = pp;
     }
 
-    double calculateProfitSharing(double companyProfit)
+    double Profit(double companyProfit)
     {
-      return (companyProfit * profitSharePercentage) / 100;
+      return (companyProfit * pp) / 100;
     }
 
     void display(double companyProfit) 
     {
       super.display();
-      System.out.println("Profit Share Percentage: " + profitSharePercentage + "%");
-      System.out.println("Profit Sharing Amount: " + calculateProfitSharing(companyProfit));
+      System.out.println("Profit Share Percentage: " + pp + "%");
+      System.out.println("Profit Sharing Amount: " + Profit(companyProfit));
     }
 }
 
 class Directors extends BoardMembers 
 { 
-    int hraPercentage;
+    int hp;
 
-    Directors(String name, String companyName, int empId, double salary, int profitSharePercentage, int hraPercentage) 
+    Directors(String name, String cName, int empId, double sal, int pp, int hp) 
     {
-      super(name, companyName, empId, salary, profitSharePercentage);
-      this.hraPercentage = hraPercentage;
+      super(name, cName, empId, sal,pp);
+      this.hp = hp;
     }
 
-    double calculateHra() 
+    double Hra() 
     {
-      return (salary * hraPercentage) / 100;
+      return (sal * hp) / 100;
     }
 
     void display(double companyProfit) 
     {
       super.display(companyProfit);
-      System.out.println("HRA Percentage: " + hraPercentage + "%");
-      System.out.println("HRA Amount: " + calculateHra());
+      System.out.println("HRA Percentage: " + hp + "%");
+      System.out.println("HRA Amount: " + Hra());
     }
 }
 
@@ -78,9 +80,9 @@ public class Main
 { 
     public static void main(String[] args) 
     { 
-      Emp emp = new Emp("John", "ABC Corp", 101, 50000); 
-      BoardMembers boardMember = new BoardMembers("Alice", "XYZ Ltd", 102, 80000, 5); 
-      Directors director = new Directors("Robert", "PQR Inc", 103, 100000, 10, 15);
+      Emp emp = new Emp("RAJU", "TCS", 101, 50000); 
+      BoardMembers boardMember = new BoardMembers("ANU", "CTS", 102, 80000, 5); 
+      Directors director = new Directors("ROSY", "ZOHO", 103, 100000, 10, 15);
 
       double companyProfit = 500000;
     
