@@ -1,0 +1,29 @@
+class Main {
+    public static int search(int[] arr, int key) {
+        int left = 0, right = arr.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] == key) {
+                return mid; // Element found
+            } else if (arr[mid] < key) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1; // Element not found
+    }
+    
+    public static void main(String[] args) {
+        int[] numbers = {10, 20, 30, 40, 50};
+        int key = 30;
+        
+        int result = search(numbers, key);
+        
+        if (result != -1) {
+            System.out.println("Element found at index: " + result);
+        } else {
+            System.out.println("Element not found");
+        }
+    }
+}
