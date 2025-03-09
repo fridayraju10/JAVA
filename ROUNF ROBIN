@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main {
+    public static void scheduleTasks(int[] tasks, int timeSlice) {
+        Queue<Integer> queue = new LinkedList<>();
+        for (int task : tasks) 
+        queue.add(task);
+
+        int time = 0;
+        while (!queue.isEmpty()) {
+            int task = queue.poll();
+            if (task > timeSlice) {
+                queue.add(task - timeSlice);
+                time += timeSlice;
+            } else {
+                time += task;
+            }
+            System.out.println("Task executed for: " + Math.min(task, timeSlice) + " units, Total time: " + time);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] tasks = {5,2};
+        int timeSlice = 3;
+        scheduleTasks(tasks, timeSlice);
+    }
+}
