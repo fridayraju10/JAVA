@@ -18,6 +18,46 @@ public class Main {
             System.out.println("Task executed for: " + Math.min(task, timeSlice) + " units, Total time: " + time);
         }
     }
+------------------------------
+"Write a Java program to schedule tasks using the round-robin method. You are given an array of task durations and a fixed time slice. Each task runs for the time slice, and if it needs more time, it goes back to the queue with its remaining time. Print how long each task runs and the total time taken.
+Test Case 1
+Input:
+Tasks = {10, 5, 8}, Time Slice = 4
+
+Output:
+Test Case 1:
+Task 1 runs for 4 units.
+Task 2 runs for 4 units.
+Task 3 runs for 4 units.
+Task 1 runs for 4 units.
+Task 3 runs for 4 units.
+Task 1 runs for 2 units.
+Task 3 runs for 2 units.
+Total execution time: 24
+-----------------------------
+
+
+
+Input:
+Tasks = {20, 15, 10, 5}, Time Slice = 4
+
+
+Test Case 2:
+Task 1 runs for 4 units.
+Task 2 runs for 4 units.
+Task 3 runs for 4 units.
+Task 4 runs for 4 units.
+Task 1 runs for 4 units.
+Task 2 runs for 4 units.
+Task 3 runs for 2 units.
+Task 1 runs for 4 units.
+Task 2 runs for 3 units.
+Task 1 runs for 4 units.
+Task 1 runs for 4 units.
+Total execution time: 45
+-----------------------------
+
+
 
     public static void main(String[] args) {
         int[] tasks = {5,2};
