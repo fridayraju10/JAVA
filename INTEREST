@@ -1,0 +1,61 @@
+import java.util.*;
+
+public class Main {
+    public static int week_collection(Queue<int[]> q, int emi) {  
+        int tot = 0;
+        int size = q.size();
+        
+        for (int i = 0; i < size; i++) {
+            int[] person = q.poll(); 
+            person[1]++; 
+            
+            tot += emi; 
+            
+            if (person[1] < person[2]) { 
+                q.add(person);
+            }
+        }
+        return tot;
+    }
+
+    public static void calculate(int no_person, int emi, int week_person, int amount_person) {
+        Queue<int[]> q = new LinkedList<>();
+        int rem_money = 0;
+        int i;
+        int grand = 0;
+        int total_weeks = 0;
+        int next_person = no_person + 1;
+        int total_loans_given = no_person; 
+        
+    
+        for (i = 1; i <= no_person; i++) {
+            q.add(new int[]{i, 0, week_person});
+        }
+
+    
+        while (!q.isEmpty()) {
+            total_weeks++;
+            int coll = week_collection(q, emi);
+            grand += coll;
+            rem_money += coll;
+
+            
+            while (rem_money >= amount_person && total_loans_given < no_person * week_person) {
+                rem_money -= amount_person;
+                q.add(new int[]{next_person++, 0, week_person});
+                total_loans_given++;
+            }
+        }
+
+        System.out.println("Net Profit: " + (grand - (amount_person * no_person)));
+    }
+
+    public static void main(String[] args) {
+        int amount_person = 5000; 
+        int no_person = 10; 
+        int emi = 600; 
+        int week_person = 10; 
+
+        calculate(no_person, emi, week_person, amount_person);
+    }
+}
