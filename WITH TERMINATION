@@ -1,0 +1,84 @@
+import java.util.*;
+
+public class Main {
+    public static int week_collection(Queue<int[]> q, int emi) {  
+        int tot = 0;
+        int size = q.size();
+        
+        for (int i = 0; i < size; i++) {
+            int[] person = q.poll(); 
+            person[1]++; 
+            
+            tot += emi; 
+            
+            if (person[1] < person[2]) { 
+                q.add(person);
+            }
+        }
+        return tot;
+    }
+
+    public static void calculate(int no_person, int emi, int week_person, int amount_person, int t) {
+        Queue<int[]> q = new LinkedList<>();
+        int rem_money = 0;
+        int week_count = 0;
+        int grand = 0;
+        int total_weeks = 0;
+        int next_person = no_person + 1;
+        int total_loans_given = no_person; 
+        
+        for (int i = 1; i <= no_person; i++) {
+            q.add(new int[]{i, 0, week_person});
+        }
+
+        while (!q.isEmpty()) {
+            total_weeks++;
+            int coll = week_collection(q, emi);
+            week_count++;
+            grand += coll;
+            rem_money += coll;
+
+            if (week_count < t) { 
+                while (rem_money >= amount_person && total_loans_given < no_person * week_person) {
+                    rem_money -= amount_person;
+                    q.add(new int[]{next_person++, 0, week_person});
+                    total_loans_given++;
+                }
+            }
+
+           
+            System.out.println("WEEK WISE STATUS");
+            System.out.println("Week: " + total_weeks + ", Collected: Rs" + coll + ", Remaining Money: Rs" + rem_money + ", Queue Size: " + q.size());
+            System.out.println("-------------------------------------------");
+        }
+
+    
+        System.out.println("----------INVESTMENT SUMMARY----------");
+        System.out.println("INITIAL NO OF PERSON : " + no_person);
+        System.out.println("NO OF WEEKS TO COMPLETE ONE'S DEBT : " + week_person);
+        System.out.println("INITIAL AMOUNT GIVEN PER PERSON : Rs" + amount_person);
+        System.out.println("AMOUNT PER WEEK BY SINGLE PERSON (EMI) : Rs" + emi);
+        System.out.println("TOTAL INITIAL INVESTMENT : Rs" + (no_person * amount_person));
+        System.out.println();
+
+        System.out.println("----------PROFIT SUMMARY----------");
+        System.out.println("TOTAL NO OF WEEKS TO COMPLETE THE BUSINESS : " + week_count);
+        System.out.println("TOTAL NO OF GUYS BORROWED FROM ME : " + total_loans_given);
+        System.out.println("TOTAL AMOUNT COLLECTED : Rs" + grand);
+        System.out.println("MY NET PROFIT : Rs" + (grand - (no_person * amount_person)));
+        System.out.println("-------------------------------------------");
+        System.out.println();
+        System.out.println("                        --------------> QUESTION FRAMED BY PRINCE <-----------");
+        System.out.println("                        --------------> SOLUTION BY RAJU VARMA <-----------");
+    }
+
+    public static void main(String[] args) {
+        int amount_person = 5000; 
+        int no_person = 10; 
+        int emi = 600; 
+        int week_person = 10;
+        int termination = 3;
+
+        calculate(no_person, emi, week_person, amount_person, termination);
+    }
+}
