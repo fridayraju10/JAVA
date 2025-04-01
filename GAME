@@ -15,9 +15,9 @@ public class Main {
         System.out.println("Hello " + name1 + " and " + name2);
 
         Thread.sleep(1000);
-        System.out.println("Computer has some five integers in mind");
+        System.out.println("Computer has some five integers  in mind range 0 to 10 ");
         Thread.sleep(1000);
-        System.out.println("You both can have five choices each to guess .. Ready??");
+        System.out.println("You both can have three choices each to guess .. Ready??");
 
         List<Integer> num = new ArrayList<>();
         while (num.size() != 5) {
@@ -60,23 +60,25 @@ public class Main {
                 System.out.println("WRONG");
             }
         }
-
-        System.out.println(s1);
-        System.out.println(s2);
         System.out.println("Let's see summary and result");
-        Thread.sleep(1000);
+        Thread.sleep(6000);
+        //System.out.println(s1);
+        //System.out.println(s2);
+        
+        //Thread.sleep(1000);
         System.out.println("Numbers in mind: " + num);
         System.out.println(name1 + " has chosen: " + player1);
-        System.out.println("His score is: " + s1);
+        System.out.println(name1 +" score is: " + s1);
         System.out.println(name2 + " has chosen: " + player2);
-        System.out.println("His score is: " + s2);
+        System.out.println(name2 +" score is: " + s2);
+        Thread.sleep(6000);
 
         if (s1 > s2) {
-            System.out.println("Mr/Ms " + name1 + " is the winner!");
+            System.out.println("                Mr/Ms " + name1 + " is the winner!");
         } else if (s2 > s1) {
-            System.out.println("Mr/Ms " + name2 + " is the winner!");
+            System.out.println("                Mr/Ms " + name2 + " is the winner!");
         } else {
-            System.out.println("Score level --- Draw");
+            System.out.println("                Score level --- Draw");
         }
 
         scanner.close();
