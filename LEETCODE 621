@@ -1,0 +1,31 @@
+class Solution {
+    public int leastInterval(char[] tasks, int n) {
+         Map<Character, Integer> freqMap = new HashMap<>();
+    for (char task : tasks) 
+    {
+       if (freqMap.containsKey(task)) 
+         freqMap.put(task, freqMap.get(task) + 1);
+       else 
+         freqMap.put(task, 1);
+    }
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+    maxHeap.addAll(freqMap.values());
+    int time = 0;
+    while (!maxHeap.isEmpty()) {
+        List<Integer> temp = new ArrayList<>();
+        int cycle = n + 1;
+
+        for (int i = 0; i < cycle && !maxHeap.isEmpty(); i++) {
+            temp.add(maxHeap.poll());
+        }
+
+        for (int count : temp) {
+            if (--count > 0) maxHeap.offer(count);
+        }
+
+        time += maxHeap.isEmpty() ? temp.size() : cycle;
+    }
+    return time;
+
+    }
+}
