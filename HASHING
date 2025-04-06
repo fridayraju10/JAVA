@@ -1,0 +1,61 @@
+import java.util.Scanner;
+public class Main 
+{
+    static final int SIZE = 10; 
+    static int[] table = new int[SIZE];
+
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0; i < SIZE; i++) 
+        {
+            table[i] = -1;
+        }
+        System.out.print("How many integers to insert? ");
+        int n = sc.nextInt();
+        for (int i = 0; i < n; i++) 
+        {
+            System.out.print("Enter integer: ");
+            int value = sc.nextInt();
+            insert(value);
+        }
+        System.out.println("\nHash Table Contents:");
+        display();
+    }
+
+    public static int hashFunction(int key) 
+    {
+        return key % SIZE;
+    }
+
+    public static void insert(int value) 
+    {
+        int index = hashFunction(value);
+        int originalIndex = index;
+        int count = 0;
+
+        while (table[index] != -1) 
+        {
+            index = (index + 1) % SIZE;
+            count++;
+
+            if (index == originalIndex) {
+                System.out.println("Hash table is full. Cannot insert " + value);
+                return;
+            }
+        }
+        table[index] = value;
+        System.out.println("Inserted " + value + " at index " + index + " (collisions: " + count + ")");
+    }
+
+    public static void display() 
+    {
+        for (int i = 0; i < SIZE; i++) 
+        {
+            if (table[i] != -1)
+                System.out.println("Index " + i + ": " + table[i]);
+            else
+                System.out.println("Index " + i + ": empty");
+        }
+    }
+}
