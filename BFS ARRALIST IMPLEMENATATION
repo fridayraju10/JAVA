@@ -1,0 +1,75 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
+class Graph {
+    ArrayList<ArrayList<Integer>> adjList;
+
+    Graph(int v) {
+        adjList = new ArrayList<>();
+        for (int i = 0; i < v; i++) {
+            adjList.add(new ArrayList<>());
+        }
+    }
+
+    public void addEdge(int u, int v) {
+        adjList.get(u).add(v);
+        adjList.get(v).add(u); // For undirected graph
+    }
+
+    public void printAdjList() {
+        for (int i = 0; i < adjList.size(); i++) {
+            System.out.println("Adj List of Vertex " + i);
+            for (int j = 0; j < adjList.get(i).size(); j++) {
+                System.out.print(" " + adjList.get(i).get(j));
+            }
+            System.out.println();
+        }
+    }
+
+    public void bfs(int start) {
+        boolean[] visited = new boolean[adjList.size()];
+        Queue<Integer> q = new LinkedList<>();
+
+        visited[start] = true;
+        q.add(start);
+
+        System.out.println("BFS Traversal starting from vertex " + start + ":");
+
+        while (!q.isEmpty()) {
+            int curr = q.poll();
+            System.out.print(curr + " ");
+
+            for (int neighbor : adjList.get(curr)) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    q.add(neighbor);
+                }
+            }
+        }
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int[][] graphh = {
+            {0, 1, 0, 0, 1},
+            {1, 0, 1, 0, 1},
+            {0, 1, 0, 1, 0},
+            {0, 0, 1, 0, 1},
+            {1, 1, 0, 1, 0}
+        };
+
+        Graph g = new Graph(5);
+        g.addEdge(0, 1);
+        g.addEdge(2, 3);
+        g.addEdge(1, 2);
+        g.addEdge(3, 4);
+        g.addEdge(0, 4);
+        g.addEdge(1, 4);
+
+        g.printAdjList();
+        g.bfs(0); // BFS from vertex 0
+    }
+}
