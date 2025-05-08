@@ -1,0 +1,69 @@
+import java.util.*;
+public class Main
+{
+	
+  
+	public static void circle()
+	{
+	     Scanner sc=new Scanner(System.in);
+	    System.out.println("Enter the radius ");
+	    int r=sc.nextInt();
+	    double area=3.14 * r*r;
+	    System.out.println("Area of circle is "+area);
+	}
+	
+	public static void square(int a)
+	{
+	    int Area=a*a;
+	    System.out.println("area of Square is "+Area);
+	}
+	public static int rectangle()
+	{
+	    Scanner sc=new Scanner(System.in);
+	    System.out.println("Enter the length ");
+	    int l=sc.nextInt();
+	    System.out.println("Enter the breadth ");
+	    int b=sc.nextInt();
+	    return l*b;
+	}
+	
+	public static double triangle(int b,int h)
+	{
+	    double Area= 0.5*b*h;
+	    return Area;
+	}
+	
+	public static void main(String[] args) 
+	{
+	 
+	   Scanner sc=new Scanner(System.in);
+	  System.out.println("1. CIRCLE ");
+	  System.out.println("2. SQUARE ");
+	  System.out.println("3. RECTANGLE ");
+	  System.out.println("4. TRIANGLE ");
+	  System.out.println("Enter your choice ");
+	  int ch=sc.nextInt();
+	  if(ch==1)
+	  circle();
+	  else if(ch==2)
+	  {
+	      System.out.println("Enter side of square ");
+	      int a=sc.nextInt();
+	      square(a);
+	  }
+	  else if(ch==3)
+	  {
+	      int res=rectangle();
+	      System.out.println("area of Rectangle is "+res);
+	  }
+	  else
+	  {
+	      System.out.println("Enter the height ");
+	      int h=sc.nextInt();
+	      System.out.println("Enter the base ");
+	      int b=sc.nextInt();
+	      double res=triangle(b,h);
+	      System.out.println("Area of Triangle is "+res);
+	  }
+	  }
+}
