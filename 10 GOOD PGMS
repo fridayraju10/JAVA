@@ -1,0 +1,343 @@
+---------------------1.PASSWORD---------------------
+import java.util.Scanner;
+
+public class PasswordChecker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter your password");
+        String s = scanner.nextLine();
+        System.out.println("Entered password is " + s);
+
+        int a = 0, b = 0, c = 0, d = 0;
+
+        if (s.length() > 8) {
+            for (int i = 0; i < s.length(); i++) {
+                char ch = s.charAt(i);
+                if (Character.isUpperCase(ch)) {
+                    a++;
+                } else if (Character.isLowerCase(ch)) {
+                    b++;
+                } else if (Character.isDigit(ch)) {
+                    c++;
+                } else if (!Character.isLetterOrDigit(ch)) {
+                    d++;
+                }
+            }
+            if (a > 0 && b > 0 && c > 0 && d > 0) {
+                System.out.println("Good Password");
+            } else {
+                System.out.println("Bad password");
+            }
+        } else {
+            System.out.println("You entered less characters, please enter more than 8 characters");
+        }
+        
+        scanner.close();
+    }
+}
+-------------------2.STRING COMPRESSION ------------------
+public class Main 
+{
+    public static void main(String[] args) 
+    {
+        String input = "aabcccccaaa";
+        String result = "";
+        int count = 1;
+        for (int i = 0; i < input.length(); i++) 
+        {
+            if (i + 1 < input.length() && input.charAt(i) == input.charAt(i + 1)) 
+            {
+                count++;
+            } else 
+            {
+                result += input.charAt(i);
+                result += count;
+                count = 1;
+            }
+        }
+        System.out.println("Output: " + result);
+    }
+}
+----------------3 CO PRIME-----------------------------
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the range: ");
+        int range = scanner.nextInt();
+
+        for (int i = 1; i <= range; i++) {
+            for (int j = 1; j < i; j++) {
+                for (int k = 1; k < j; k++) {
+                    if (k * k + j * j == i * i && areCoprime(i, j) && areCoprime(i, k) && areCoprime(j, k)) {
+                        System.out.println(i + " " + j + " " + k);
+                    }
+                }
+            }
+        }
+
+        scanner.close();
+    }
+
+    private static boolean areCoprime(int a, int b) {
+        return gcd(a, b) == 1;
+    }
+    private static int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+}
+------------------------4.ROUND NUMBER---------------------------
+import java.util.HashSet;
+import java.util.Set;
+
+public class Main {
+
+    public static boolean isRoundNumber(int n) {
+        Set<Integer> seenNumbers = new HashSet<>();
+        
+        while (n != 1 && !seenNumbers.contains(n)) {
+            seenNumbers.add(n);
+            n = sumOfSquaresOfDigits(n);
+        }
+        
+        return n == 1;
+    }
+
+    private static int sumOfSquaresOfDigits(int n) {
+        int sum = 0;
+        while (n > 0) {
+            int digit = n % 10;
+            sum += digit * digit;
+            n /= 10;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        // Example test cases
+        int test1 = 19; // round number
+        int test2 = 20; // not a round number
+        int test3 = 7; // round number
+
+        System.out.println(test1 + " is round number: " + isRoundNumber(test1)); // true
+        System.out.println(test2 + " is round number: " + isRoundNumber(test2)); // false
+        System.out.println(test3 + " is round number: " + isRoundNumber(test3)); // true
+    }
+}
+---------------------5.SPIRAL------------------------------
+import java.util.HashSet;
+import java.util.Set;
+
+public class Main {
+
+    public static boolean isRoundNumber(int n) {
+        Set<Integer> seenNumbers = new HashSet<>();
+        
+        while (n != 1 && !seenNumbers.contains(n)) {
+            seenNumbers.add(n);
+            n = sumOfSquaresOfDigits(n);
+        }
+        
+        return n == 1;
+    }
+
+    private static int sumOfSquaresOfDigits(int n) {
+        int sum = 0;
+        while (n > 0) {
+            int digit = n % 10;
+            sum += digit * digit;
+            n /= 10;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        // Example test cases
+        int test1 = 19; // round number
+        int test2 = 20; // not a round number
+        int test3 = 7; // round number
+
+        System.out.println(test1 + " is round number: " + isRoundNumber(test1)); // true
+        System.out.println(test2 + " is round number: " + isRoundNumber(test2)); // false
+        System.out.println(test3 + " is round number: " + isRoundNumber(test3)); // true
+    }
+}
+---------------------6..3D PRIME------------------------
+public class Main {
+
+    public static void main(String[] args) {
+        for (int num = 100; num < 1000; num++) {
+            if (isPrime(num) && isPrime(sumDigits(num)) && allDigitsPrime(num)) {
+                System.out.println(num);
+            }
+        }
+    }
+
+    static boolean isPrime(int a) {
+        if (a < 2) return false;
+        for (int i = 2; i <= Math.sqrt(a); i++) {
+            if (a % i == 0)
+                return false;
+        }
+        return true;
+    }
+
+    static int sumDigits(int a) {
+        int sum = 0;
+        while (a > 0) {
+            sum += a % 10;
+            a /= 10;
+        }
+        return sum;
+    }
+
+    static boolean allDigitsPrime(int n) {
+        while (n > 0) {
+            int digit = n % 10;
+            if (!isPrime(digit))
+                return false;
+            n /= 10;
+        }
+        return true;
+    }
+}
+--------------------------7 ANAGRAM--------------------------------
+import java.util.Arrays;
+
+public class Main 
+{
+    public static void main(String[] args) 
+    {
+        String str1 = "listen";
+        String str2 = "silent";
+
+        if (str1.length() != str2.length()) 
+        {
+            System.out.println("No");
+        } 
+        else 
+        {
+            char[] array1 = str1.toCharArray();
+            char[] array2 = str2.toCharArray();
+            Arrays.sort(array1);
+            Arrays.sort(array2);
+            boolean areAnagrams = Arrays.equals(array1, array2);
+            
+            if (areAnagrams) 
+            {
+                System.out.println("Yes");
+            } 
+            else 
+            {
+                System.out.println("No");
+            }
+        }
+    }
+}
+-------------------8. HENS COWS---------------------------------
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter total number of heads: ");
+        int heads = scanner.nextInt();
+
+        System.out.print("Enter total number of legs: ");
+        int legs = scanner.nextInt();
+
+        boolean found = false;
+
+        for (int hens = 0; hens <= heads; hens++) {
+            int cows = heads - hens;
+            int totalLegs = hens * 2 + cows * 4;
+
+            if (totalLegs == legs) {
+                System.out.println("Number of hens: " + hens);
+                System.out.println("Number of cows: " + cows);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No solution exists with given heads and legs.");
+        }
+
+        scanner.close();
+    }
+}
+---------------------------------9 MATCHES--------------------------------------------
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter number of teams: ");
+        int numTeams = scanner.nextInt();
+        scanner.nextLine(); 
+
+        
+        String[] teams = new String[numTeams];
+        System.out.println("Enter team names:");
+        for (int i = 0; i < numTeams; i++) {
+            teams[i] = scanner.nextLine();
+        }
+
+        System.out.print("Enter number of matches between same teams: ");
+        int matchesPerPair = scanner.nextInt();
+
+        
+        List<String[]> matchPairs = new ArrayList<>();
+        for (int i = 0; i < numTeams; i++) {
+            for (int j = i + 1; j < numTeams; j++) {
+                for (int k = 0; k < matchesPerPair; k++) {
+                    matchPairs.add(new String[]{teams[i], teams[j]});
+                }
+            }
+        }
+
+      
+        Collections.shuffle(matchPairs);
+
+        int matchNumber = 1;
+        for (String[] pair : matchPairs) {
+            System.out.println("Match " + matchNumber + ": " + pair[0] + " vs " + pair[1]);
+            matchNumber++;
+        }
+
+        scanner.close();
+    }
+}
+----------------------10 COINS ---------------------------------
+public class Main {
+    public static void main(String[] args) {
+        int[] coins = {500, 200, 100, 50, 20, 10, 5, 2, 1};
+        int amount = 1200;
+
+        System.out.println("Amount: Rs" + amount);
+        System.out.print("Coins used: ");
+
+        for (int coin : coins) {
+            while (amount >= coin) {
+                System.out.print(coin + " ");
+                amount -= coin;
+            }
+        }
+
+        if (amount > 0) {
+            System.out.println("\nRemaining amount that can't be changed: Rs" + amount);
+        }
+    }
+}
+-----------------------------------------------------
