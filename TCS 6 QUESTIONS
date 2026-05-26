@@ -1,0 +1,127 @@
+1.Problem Description
+
+Given a string, remove all duplicate characters while maintaining the original order of appearance.
+Print the final string after removing duplicates.
+Character comparison should be case-insensitive, 
+meaning uppercase and lowercase versions of the same character are treated as duplicates.
+Constraints
+1 <= length of string <= 100
+testcase 1:
+input:PROGRAMMING
+output: PROGAMIN
+
+testcase 2:
+input:ProGramMing 
+output:ProGamin 
+-----------------------------------------------------------------------------------------
+2. Given an array of names in different formats (uppercase, lowercase, mixed case), convert every name into proper format.
+
+In proper format:
+The first letter should be uppercase.
+All remaining letters should be lowercase.
+Print all names in proper format.
+
+Testcase :
+pRiya
+sUResh
+kAVya
+
+Priya
+Suresh
+Kavya
+-----------------------------------------------------------------------------
+3.Problem Description
+
+Three arrays contain the names of students enrolled in different subjects: Computer, Science, and Maths.
+
+Your task is to determine:
+
+Students enrolled in exactly one subject
+Students enrolled in exactly two subjects
+Students enrolled in all three subjects
+
+Print the names category-wise.
+Input: Three string arrays representing student names in:
+Computer
+Science
+Maths
+Output Print:
+Students studying only one subject
+Students studying exactly two subjects
+Students studying all three subjects
+
+Testcase:
+Computer = [RAJU, ARUN, VIKRAM, JOHN]
+Science = [ARUN, JOHN, DAVID]
+Maths = [RAJU, JOHN, KIRAN]
+
+Only One Subject
+[VIKRAM, DAVID, KIRAN]
+Exactly Two Subjects
+[RAJU, ARUN]
+All Three Subjects
+[JOHN]
+----------------------------------------------------------------------
+4.Problem Description
+A security system generates a numeric security key based on repeated digits in a number.
+Given an integer, count how many distinct digits appear more than once in the number.
+Print the count of repeating digits.
+
+Input Format
+A single integer N
+Output Format
+Print the number of distinct digits that occur more than once.
+Constraints
+1 <= N <= 10^9
+
+Testcase:  input : 578378923
+                 Output : 3 
+-----------------------------------------------------------------------
+5. Problem Description
+A company wants to validate user passwords before allowing account creation.
+A password is considered valid only if it satisfies all the following conditions:
+Password length must be at least 8 characters.
+Must contain at least one uppercase letter.
+Must contain at least one lowercase letter.
+Must contain at least one digit.
+Must contain at least one special character.
+Spaces are not allowed.
+Consecutive repeated characters are not allowed.
+If all conditions are satisfied, print:
+Good Password
+Otherwise, print an appropriate invalid message.
+
+Input Format
+A single string representing the password.
+Output Format
+Print whether the password is valid or invalid.
+Test Case 1
+Input:Raju@123
+Output:Good Password
+Test Case 2
+Input:Raju@11
+Output: Consecutive repeated characters are not allowed
+-------------------------------------------------------------------------
+6. Problem Description
+
+A monkey is trying to reach the top of a pole of height X meters.
+Every minute:The monkey climbs Y meters.
+After climbing, it slips down by Z meters (in next minute).
+This process repeats until the monkey reaches or crosses the top of the pole.
+Find the total number of minutes required for the monkey to reach the top.
+
+Input Format
+Three integers:
+X → Height of the pole
+Y → Distance climbed every minute
+Z → Distance slipped after climbing
+Output Format
+Print the total number of minutes required.
+Test Case 1
+Input
+X = 30
+Y = 10
+Z = 5
+Output
+9
+----------------------------------------------------------------------
