@@ -1,0 +1,59 @@
+import java.util.*;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        String computer[] = {"RAJU", "ARUN", "VIKRAM", "JOHN"};
+        String science[]  = {"ARUN", "JOHN", "DAVID"};
+        String maths[]    = {"RAJU", "JOHN", "KIRAN"};
+
+        // Store count of subjects for each student
+        HashMap<String, Integer> map = new HashMap<>();
+
+        // Count from computer
+        for(String s : computer)
+        {
+            map.put(s, map.getOrDefault(s, 0) + 1);
+        }
+
+        // Count from science
+        for(String s : science)
+        {
+            map.put(s, map.getOrDefault(s, 0) + 1);
+        }
+
+        // Count from maths
+        for(String s : maths)
+        {
+            map.put(s, map.getOrDefault(s, 0) + 1);
+        }
+
+        System.out.println("Only One Subject:");
+        for(String s : map.keySet())
+        {
+            if(map.get(s) == 1)
+            {
+                System.out.println(s);
+            }
+        }
+
+        System.out.println("\nExactly Two Subjects:");
+        for(String s : map.keySet())
+        {
+            if(map.get(s) == 2)
+            {
+                System.out.println(s);
+            }
+        }
+
+        System.out.println("\nAll Three Subjects:");
+        for(String s : map.keySet())
+        {
+            if(map.get(s) == 3)
+            {
+                System.out.println(s);
+            }
+        }
+    }
+}
