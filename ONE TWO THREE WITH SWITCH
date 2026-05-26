@@ -1,0 +1,60 @@
+import java.util.*;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        String computer[] = {"RAJU", "ARUN", "VIKRAM", "JOHN"};
+        String science[]  = {"ARUN", "JOHN", "DAVID"};
+        String maths[]    = {"RAJU", "JOHN", "KIRAN"};
+
+        HashMap<String,Integer> map = new HashMap<>();
+
+        for(String s : computer)
+        {
+            map.put(s, map.getOrDefault(s,0)+1);
+        }
+
+        for(String s : science)
+        {
+            map.put(s, map.getOrDefault(s,0)+1);
+        }
+
+        for(String s : maths)
+        {
+            map.put(s, map.getOrDefault(s,0)+1);
+        }
+
+        ArrayList<String> one = new ArrayList<>();
+        ArrayList<String> two = new ArrayList<>();
+        ArrayList<String> three = new ArrayList<>();
+
+        // SINGLE LOOP
+        for(String s : map.keySet())
+        {
+            switch(map.get(s))
+            {
+                case 1:
+                    one.add(s);
+                    break;
+
+                case 2:
+                    two.add(s);
+                    break;
+
+                case 3:
+                    three.add(s);
+                    break;
+            }
+        }
+
+        System.out.println("Only One Subject");
+        System.out.println(one);
+
+        System.out.println("\nExactly Two Subjects");
+        System.out.println(two);
+
+        System.out.println("\nAll Three Subjects");
+        System.out.println(three);
+    }
+}
